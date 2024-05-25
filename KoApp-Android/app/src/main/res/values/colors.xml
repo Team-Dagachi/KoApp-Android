@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Default Color -->
+    <color name="Black">#FF000000</color>
+    <color name="White">#FFFFFFFF</color>
+    <color name="Transparent">#00000000</color>
+
+    <!-- Main Color -->
+    <color name="Main_100">#FCC118</color>
+    <color name="Main_70">#FDD152</color>
+    <color name="Main_50">#FDE08B</color>
+    <color name="Main_30">#FEECBA</color>
+    <color name="Main_20">#FCF3D7</color>
+    <color name="Main_10">#FEFAF3</color>
+
+    <!-- Sub Color 1 -->
+    <color name="Orange_Dark">#FC5E01</color>
+    <color name="Orange_Medium">#FD8E4D</color>
+    <color name="Orange_Light">#FFCBAD</color>
+
+    <!-- Sub Color 2 -->
+    <color name="Red_Dark">#E40002</color>
+    <color name="Red_Medium">#EC4D4E</color>
+    <color name="Red_Light">#FCE4E2</color>
+
+    <!-- Gray Scale -->
+    <color name="Gray_700">#3E4345</color>
+    <color name="Gray_600">#5E6366</color>
+    <color name="Gray_500">#919699</color>
+    <color name="Gray_400">#C6CACC</color>
+    <color name="Gray_300">#E3E5E5</color>
+    <color name="Gray_200">#F1F3F4</color>
+    <color name="Gray_100">#F7F9FA</color>
+
+    <!-- Other Color -->
+    <color name="Teal_100">#005A59</color>
+    <color name="Teal_50">#9AD2D2</color>
+    <color name="Green_100">#9AC8C8</color>
+    <color name="Green_50">#E3ECEC</color>
+    <color name="Pink_100">#F584B5</color>
+    <color name="Pink_50">#FCCEE1</color>
 </resources>
