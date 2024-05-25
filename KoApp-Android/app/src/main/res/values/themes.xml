@@ -1,9 +1,34 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.KoAppAndroid" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.KoAppAndroid" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/White</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- cursor style -->
+        <item name="colorAccent">@color/Gray_600</item>
+        <item name="android:textColorHighlight">@color/Gray_300</item>
     </style>
 
     <style name="Theme.KoAppAndroid" parent="Base.Theme.KoAppAndroid" />
+
+    <!-- bnv 폰트 스타일 (Active) -->
+    <style name="bnvActiveTextStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <!-- bnv 폰트 스타일 (InActive) -->
+    <style name="bnvInActiveTextStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <!-- bnv indicator 스타일 -->
+    <style name="Theme.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="shapeAppearance">
+            @style/ShapeAppearance.M3.Comp.NavigationBar.ActiveIndicator.Shape
+        </item>
+        <item name="android:color">#4DFFFFFF</item>
+    </style>
 </resources>

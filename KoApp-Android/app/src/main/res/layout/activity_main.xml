@@ -1,19 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- 메인 화면 -->
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_CLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.main.MainActivity">
+
+        <!-- 각 화면에서 보여질 화면 -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/main_frm"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bnv_learner_main"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph"/>
+
+        <!-- 학습자의 바텀 네비게이션 -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bnv_learner_main"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:background="@drawable/bnv_learner_bg"
+            app:itemActiveIndicatorStyle="@style/Theme.BottomNavigationView.ActiveIndicator"
+            app:itemBackground="@color/Transparent"
+            app:itemRippleColor="@color/Transparent"
+            app:itemIconSize="24dp"
+            app:itemIconTint="@drawable/selector_bnv_menu_color"
+            app:itemTextColor="@drawable/selector_bnv_menu_color"
+            app:itemTextAppearanceActive="@style/bnvActiveTextStyle"
+            app:itemTextAppearanceInactive="@style/bnvInActiveTextStyle"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu_bnv_learner"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

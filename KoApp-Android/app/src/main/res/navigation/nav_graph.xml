@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/learnerHomeFragment">
+
+    <!-- 학습자 홈 화면 -->
+    <fragment
+        android:id="@+id/learnerHomeFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.home.LearnerHomeFragment"
+        android:label="frm_learner_home"
+        tools:layout="@layout/fragment_learner_home">
+    </fragment>
+
+    <!-- 숙제 화면 -->
+    <fragment
+        android:id="@+id/homeworkFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.homework.HomeworkFragment"
+        android:label="frm_homework"
+        tools:layout="@layout/fragment_homework"/>
+
+    <!-- 말하기 연습 화면 -->
+    <fragment
+        android:id="@+id/speakingFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.speaking.SpeakingFragment"
+        android:label="frm_speaking"
+        tools:layout="@layout/fragment_speaking"/>
+
+    <!-- 생활표현 화면 -->
+    <fragment
+        android:id="@+id/expressionFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.expression.ExpressionFragment"
+        android:label="frm_expression"
+        tools:layout="@layout/fragment_expression"/>
+
+    <!-- 노트 화면 -->
+    <fragment
+        android:id="@+id/noteFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.note.NoteFragment"
+        android:label="fram_note"
+        tools:layout="@layout/fragment_note"/>
+</navigation>
