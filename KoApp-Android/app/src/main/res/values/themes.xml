@@ -31,4 +31,11 @@
         </item>
         <item name="android:color">#4DFFFFFF</item>
     </style>
+
+    <!-- progressbar 스타일 -->
+    <style name="horizontalProgressBarStyle" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">12dp</item>
+        <item name="android:max">100</item>
+    </style>
 </resources>

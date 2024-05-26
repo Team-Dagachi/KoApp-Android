@@ -8,4 +8,12 @@
     <string name="bnv_menu_learner_3" translatable="false">말하기연습</string>
     <string name="bnv_menu_learner_4" translatable="false">생활표현</string>
     <string name="bnv_menu_learner_5" translatable="false">노트</string>
+
+    <!-- 말하기연습 화면의 주제 -->
+    <string name="speaking_family" translatable="false">가족</string>
+    <string name="speaking_school" translatable="false">학교</string>
+    <string name="speaking_weather_and_season" translatable="false">날씨와 계절</string>
+    <string name="speaking_travel" translatable="false">여행</string>
+    <string name="speaking_shopping" translatable="false">쇼핑</string>
+    <string name="speaking_media_and_content" translatable="false">미디어와 콘텐츠</string>
 </resources>
