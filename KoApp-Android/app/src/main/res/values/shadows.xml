@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Gray-400 20dp Shadow -->
+    <style name="Gray_400_20dp_Shadow">
+        <item name="android:shadowColor">#33C6CACC</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">16</item>
+    </style>
+
+    <!-- Gray-400 20dp Elevation -->
+    <style name="Gray_400_20dp_Elevation">
+        <item name="android:elevation">16dp</item>
+        <item name="android:outlineSpotShadowColor">#33C6CACC</item>
+    </style>
+
+    <!-- Gray-500 20dp Shadow -->
+    <style name="Gray_500_20dp_Shadow">
+        <item name="android:shadowColor">#33919699</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">16</item>
+    </style>
+
+    <!-- Gray-500 20dp Elevation -->
+    <style name="Gray_500_20dp_Elevation">
+        <item name="android:elevation">16dp</item>
+        <item name="android:outlineSpotShadowColor">#33919699</item>
+    </style>
+
+    <!-- Gray-600 12dp Shadow -->
+    <style name="Gray_600_12dp_Shadow">
+        <item name="android:shadowColor">#1F3E4345</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">8</item>
+    </style>
+
+    <!-- Gray-600 12dp Elevation -->
+    <style name="Gray_600_12dp_Elevation">
+        <item name="android:elevation">8dp</item>
+        <item name="android:outlineSpotShadowColor">#1F3E4345</item>
+    </style>
+
+    <!-- Gray-600 16dp Shadow -->
+    <style name="Gray_600_16dp_Shadow">
+        <item name="android:shadowColor">#293E4345</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">8</item>
+    </style>
+
+    <!-- Gray-600 16dp Elevation -->
+    <style name="Gray_600_16dp_Elevation">
+        <item name="android:elevation">8dp</item>
+        <item name="android:outlineSpotShadowColor">#293E4345</item>
+    </style>
+</resources>
