@@ -11,11 +11,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.viewbinding.ViewBinding
 import com.dagachi.koapp_android.R
 
-abstract class BaseActivity<T : ViewBinding>(private val inflate: (LayoutInflater) -> T): AppCompatActivity() {
+abstract class BaseActivity<T : ViewDataBinding>(private val inflate: (LayoutInflater) -> T): AppCompatActivity() {
     private var mBinding: T? = null
     protected val binding get() = mBinding!!
 
