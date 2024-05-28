@@ -1,8 +1,14 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kapt)
     alias(libs.plugins.androidx.navigation.safeargs)
+}
+
+val properties = Properties().apply {
+    load(project.rootProject.file("local.properties").inputStream())
 }
 
 android {
@@ -17,6 +23,8 @@ android {
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "GEMINI_API_KEY", properties.getProperty("gemini_api_key"))
     }
 
     buildTypes {
@@ -37,6 +45,7 @@ android {
     }
     buildFeatures {
         dataBinding = true
+        buildConfig = true
     }
 }
 
@@ -59,4 +68,7 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // gemini api
+    implementation(libs.generativeai)
 }
