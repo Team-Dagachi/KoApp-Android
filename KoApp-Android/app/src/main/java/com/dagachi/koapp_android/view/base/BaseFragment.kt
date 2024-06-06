@@ -11,13 +11,12 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.viewbinding.ViewBinding
+import androidx.databinding.ViewDataBinding
 import com.dagachi.koapp_android.view.main.MainActivity
 import com.dagachi.koapp_android.R
 import com.dagachi.koapp_android.widget.utils.Inflate
 
-
-abstract class BaseFragment<VB: ViewBinding>(private val inflate: Inflate<VB>) : Fragment() {
+abstract class BaseFragment<VB: ViewDataBinding>(private val inflate: Inflate<VB>) : Fragment() {
     private var mBinding: VB? = null
     protected val binding get() = mBinding!!
     protected var mainActivity: MainActivity? = null

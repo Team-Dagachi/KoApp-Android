@@ -26,7 +26,15 @@
         android:id="@+id/speakingFragment"
         android:name="com.dagachi.koapp_android.view.main.learner.speaking.SpeakingFragment"
         android:label="frm_speaking"
-        tools:layout="@layout/fragment_speaking"/>
+        tools:layout="@layout/fragment_speaking">
+    </fragment>
+
+    <!-- 스피킹 화면 -->
+    <fragment
+        android:id="@+id/chattingFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.speaking.ChattingFragment"
+        android:label="frm_chatting"
+        tools:layout="@layout/fragment_chatting"/>
 
     <!-- 생활표현 화면 -->
     <fragment
