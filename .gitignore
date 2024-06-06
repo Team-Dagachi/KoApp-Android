@@ -2,6 +2,7 @@
 ._.DS_Store
 **/.DS_Store
 **/._.DS_Store
+/src/main/res/values/gemini_system_instruction.xml
 
 # Created by https://www.toptal.com/developers/gitignore/api/kotlin,android,androidstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=kotlin,android,androidstudio
