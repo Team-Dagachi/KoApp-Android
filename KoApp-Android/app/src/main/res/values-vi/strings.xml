@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 베트남어 -->
+<resources>
+    <string name="app_name">KoApp!</string>
+
+    <!-- 말하기연습 화면의 주제 -->
+    <!-- 학교 -->
+    <string name="speaking_school_teacher">Nói chuyện với thầy giáo</string>
+    <string name="speaking_school_friend">Nói chuyện với bạn</string>
+    <!-- 미디어와 콘텐츠 -->
+    <string name="speaking_media_and_content_kpop">Nói về ca sĩ K-POP yêu thích</string>
+    <string name="speaking_media_and_content_kdrama">Nói về bộ phim truyền hình Hàn Quốc mà bạn thích</string>
+    <string name="speaking_media_and_content_game">Nói về trò chơi yêu thích</string>
+
+    <!-- 말하기 연습 화면의 주제별 상황 -->
+    <!-- 학교 -->
+    <string name="speaking_school_teacher_situation">Tôi định tư vấn với giáo viên trường. Hãy nói về cuộc sống học đường.</string>
+    <string name="speaking_school_friend_situation">Tôi sẽ nói chuyện với người bạn cùng trường của tôi trong giờ ra chơi. Chúng ta hãy nói chuyện nhỏ với bạn của bạn.</string>
+    <!-- 미디어와 콘텐츠 -->
+    <string name="speaking_media_and_content_kpop_situation">Hãy nói chuyện tự do về ca sĩ K-POP mà bạn yêu thích.</string>
+    <string name="speaking_media_and_content_kdrama_situation">Hãy nói chuyện một cách tự do về bộ phim truyền hình Hàn Quốc mà chúng ta yêu thích.</string>
+    <string name="speaking_media_and_content_game_situation">Hãy nói chuyện một cách tự do về trò chơi mà bạn thích.</string>
+
+    <!-- 말하기 연습 화면의 주제별 상황 팁 -->
+    <!-- 학교 -->
+    <string name="speaking_school_teacher_tip_1">Thích ứng với cuộc sống học đường</string>
+    <string name="speaking_school_teacher_tip_2">Thích ứng với cuộc sống ở Hàn Quốc</string>
+    <string name="speaking_school_teacher_tip_3">Khó khăn khi tham gia lớp học tiếng Hàn</string>
+    <string name="speaking_school_teacher_tip_4">Khó khăn trong việc kết bạn</string>
+    <string name="speaking_school_teacher_tip_5">kế hoạch tương lai cụ thể</string>
+    <string-array name="speaking_school_teacher_tip">
+        <item>@string/speaking_school_teacher_tip_1</item>
+        <item>@string/speaking_school_teacher_tip_2</item>
+        <item>@string/speaking_school_teacher_tip_3</item>
+        <item>@string/speaking_school_teacher_tip_4</item>
+        <item>@string/speaking_school_teacher_tip_5</item>
+    </string-array>
+    <string name="speaking_school_friend_tip_1">Đã chuẩn bị bài tập chưa?</string>
+    <string name="speaking_school_friend_tip_2">Những thứ cần chuẩn bị cho ngày mai</string>
+    <string name="speaking_school_friend_tip_3">sở thích và mối quan tâm</string>
+    <string name="speaking_school_friend_tip_4">Khó khăn trong việc học tiếng Hàn</string>
+    <string name="speaking_school_friend_tip_5">kế hoạch tương lai cụ thể</string>
+    <string-array name="speaking_school_friend_tip">
+        <item>@string/speaking_school_friend_tip_1</item>
+        <item>@string/speaking_school_friend_tip_2</item>
+        <item>@string/speaking_school_friend_tip_3</item>
+        <item>@string/speaking_school_friend_tip_4</item>
+        <item>@string/speaking_school_friend_tip_5</item>
+    </string-array>
+    <!-- 미디어와 콘텐츠 -->
+    <string name="speaking_media_and_content_kpop_tip_1">Ca sĩ K-POP yêu thích</string>
+    <string name="speaking_media_and_content_kpop_tip_2">Bài hát yêu thích</string>
+    <string name="speaking_media_and_content_kpop_tip_3">Kiến thức về goods</string>
+    <string name="speaking_media_and_content_kpop_tip_4">Kinh nghiệm mua goods</string>
+    <string name="speaking_media_and_content_kpop_tip_5">Kiến thức về fangirl</string>
+    <string name="speaking_media_and_content_kpop_tip_6">Kinh nghiệm làm fan cuồng</string>
+    <string name="speaking_media_and_content_kpop_tip_7">Kinh nghiệm đến xem concert</string>
+    <string-array name="speaking_media_and_content_kpop_tip">
+        <item>@string/speaking_media_and_content_kpop_tip_1</item>
+        <item>@string/speaking_media_and_content_kpop_tip_2</item>
+        <item>@string/speaking_media_and_content_kpop_tip_3</item>
+        <item>@string/speaking_media_and_content_kpop_tip_4</item>
+        <item>@string/speaking_media_and_content_kpop_tip_5</item>
+        <item>@string/speaking_media_and_content_kpop_tip_6</item>
+        <item>@string/speaking_media_and_content_kpop_tip_7</item>
+    </string-array>
+    <string name="speaking_media_and_content_kdrama_tip_1">Drama yêu thích</string>
+    <string name="speaking_media_and_content_kdrama_tip_2">Phim yêu thích</string>
+    <string name="speaking_media_and_content_kdrama_tip_3">Thể loại phim truyền hình hoặc phim điện ảnh yêu thích</string>
+    <string name="speaking_media_and_content_kdrama_tip_4">Diễn viên yêu thích</string>
+    <string name="speaking_media_and_content_kdrama_tip_5">Lý do thích</string>
+    <string name="speaking_media_and_content_kdrama_tip_6">Kinh nghiệm đến rạp chiếu phim</string>
+    <string name="speaking_media_and_content_kdrama_tip_7">Món ăn khi đến rạp chiếu phim</string>
+    <string name="speaking_media_and_content_kdrama_tip_8">Thông tin về liên hoan phim</string>
+    <string-array name="speaking_media_and_content_kdrama_tip">
+        <item>@string/speaking_media_and_content_kdrama_tip_1</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_2</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_3</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_4</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_5</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_6</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_7</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_8</item>
+    </string-array>
+    <string name="speaking_media_and_content_game_tip_1">Game yêu thích</string>
+    <string name="speaking_media_and_content_game_tip_2">Lý do mình thích chơi game</string>
+    <string name="speaking_media_and_content_game_tip_3">Thể loại game yêu thích</string>
+    <string name="speaking_media_and_content_game_tip_4">Thời gian chơi game mỗi ngày</string>
+    <string name="speaking_media_and_content_game_tip_5">Game thủ yêu thích</string>
+    <string name="speaking_media_and_content_game_tip_6">Kinh nghiệm mua game item</string>
+    <string-array name="speaking_media_and_content_game_tip">
+        <item>@string/speaking_media_and_content_game_tip_1</item>
+        <item>@string/speaking_media_and_content_game_tip_2</item>
+        <item>@string/speaking_media_and_content_game_tip_3</item>
+        <item>@string/speaking_media_and_content_game_tip_4</item>
+        <item>@string/speaking_media_and_content_game_tip_5</item>
+        <item>@string/speaking_media_and_content_game_tip_6</item>
+    </string-array>
+</resources>

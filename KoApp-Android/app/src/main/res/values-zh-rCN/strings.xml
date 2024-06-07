@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 중국어 간체 -->
+<resources>
+    <string name="app_name">KoApp!</string>
+
+    <!-- 말하기연습 화면의 주제 -->
+    <!-- 학교 -->
+    <string name="speaking_school_teacher">和老师对话</string>
+    <string name="speaking_school_friend">和朋友对话</string>
+    <!-- 미디어와 콘텐츠 -->
+    <string name="speaking_media_and_content_kpop">说出喜欢的K-POP歌手</string>
+    <string name="speaking_media_and_content_kdrama">喜欢的韩国电视剧</string>
+    <string name="speaking_media_and_content_game">说出喜欢的游戏</string>
+
+    <!-- 말하기 연습 화면의 주제별 상황 -->
+    <!-- 학교 -->
+    <string name="speaking_school_teacher_situation">我想和学校老师面谈。 谈谈自己的学校生活吧。</string>
+    <string name="speaking_school_friend_situation">我想在休息时间跟学校朋友聊天。 和朋友聊聊琐碎的事情吧。</string>
+    <!-- 미디어와 콘텐츠 -->
+    <string name="speaking_media_and_content_kpop_situation">让我们自由地谈论一下自己喜欢的K-POP歌手吧。</string>
+    <string name="speaking_media_and_content_kdrama_situation">对自己喜欢的韩国电视剧自由故事吧。</string>
+    <string name="speaking_media_and_content_game_situation">自由地聊聊自己喜欢的游戏吧。</string>
+
+    <!-- 말하기 연습 화면의 주제별 상황 팁 -->
+    <!-- 학교 -->
+    <string name="speaking_school_teacher_tip_1">学校生活适应度</string>
+    <string name="speaking_school_teacher_tip_2">韩国生活适应度</string>
+    <string name="speaking_school_teacher_tip_3">上韩国语课时的困难</string>
+    <string name="speaking_school_teacher_tip_4">交友难</string>
+    <string name="speaking_school_teacher_tip_5">具体的未来计划</string>
+    <string-array name="speaking_school_teacher_tip">
+        <item>@string/speaking_school_teacher_tip_1</item>
+        <item>@string/speaking_school_teacher_tip_2</item>
+        <item>@string/speaking_school_teacher_tip_3</item>
+        <item>@string/speaking_school_teacher_tip_4</item>
+        <item>@string/speaking_school_teacher_tip_5</item>
+    </string-array>
+    <string name="speaking_school_friend_tip_1">准备好作业了吗？</string>
+    <string name="speaking_school_friend_tip_2">明天要准备的事情</string>
+    <string name="speaking_school_friend_tip_3">兴趣爱好</string>
+    <string name="speaking_school_friend_tip_4">学习韩语的困难</string>
+    <string name="speaking_school_friend_tip_5">具体的未来计划</string>
+    <string-array name="speaking_school_friend_tip">
+        <item>@string/speaking_school_friend_tip_1</item>
+        <item>@string/speaking_school_friend_tip_2</item>
+        <item>@string/speaking_school_friend_tip_3</item>
+        <item>@string/speaking_school_friend_tip_4</item>
+        <item>@string/speaking_school_friend_tip_5</item>
+    </string-array>
+    <!-- 미디어와 콘텐츠 -->
+    <string name="speaking_media_and_content_kpop_tip_1">喜欢的K-POP歌手</string>
+    <string name="speaking_media_and_content_kpop_tip_2">喜欢的歌曲</string>
+    <string name="speaking_media_and_content_kpop_tip_3">对于Goods知识</string>
+    <string name="speaking_media_and_content_kpop_tip_4">购买Goods的经验</string>
+    <string name="speaking_media_and_content_kpop_tip_5">德质知识</string>
+    <string name="speaking_media_and_content_kpop_tip_6">德质经验</string>
+    <string name="speaking_media_and_content_kpop_tip_7">访问演唱会场经验</string>
+    <string-array name="speaking_media_and_content_kpop_tip">
+        <item>@string/speaking_media_and_content_kpop_tip_1</item>
+        <item>@string/speaking_media_and_content_kpop_tip_2</item>
+        <item>@string/speaking_media_and_content_kpop_tip_3</item>
+        <item>@string/speaking_media_and_content_kpop_tip_4</item>
+        <item>@string/speaking_media_and_content_kpop_tip_5</item>
+        <item>@string/speaking_media_and_content_kpop_tip_6</item>
+        <item>@string/speaking_media_and_content_kpop_tip_7</item>
+    </string-array>
+    <string name="speaking_media_and_content_kdrama_tip_1">喜欢的电视剧</string>
+    <string name="speaking_media_and_content_kdrama_tip_2">喜欢的电影</string>
+    <string name="speaking_media_and_content_kdrama_tip_3">喜欢的电视剧或电影类型</string>
+    <string name="speaking_media_and_content_kdrama_tip_4">喜欢的演员</string>
+    <string name="speaking_media_and_content_kdrama_tip_5">喜欢的理由</string>
+    <string name="speaking_media_and_content_kdrama_tip_6">访问电影院经验</string>
+    <string name="speaking_media_and_content_kdrama_tip_7">电影院的时候吃的食物</string>
+    <string name="speaking_media_and_content_kdrama_tip_8">电影节的信息</string>
+    <string-array name="speaking_media_and_content_kdrama_tip">
+        <item>@string/speaking_media_and_content_kdrama_tip_1</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_2</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_3</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_4</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_5</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_6</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_7</item>
+        <item>@string/speaking_media_and_content_kdrama_tip_8</item>
+    </string-array>
+    <string name="speaking_media_and_content_game_tip_1">喜欢的游戏</string>
+    <string name="speaking_media_and_content_game_tip_2">喜欢游戏的理由</string>
+    <string name="speaking_media_and_content_game_tip_3">喜欢的游戏类型</string>
+    <string name="speaking_media_and_content_game_tip_4">一天打游戏的时间</string>
+    <string name="speaking_media_and_content_game_tip_5">喜欢的职业玩家</string>
+    <string name="speaking_media_and_content_game_tip_6">游戏道具购买经验</string>
+    <string-array name="speaking_media_and_content_game_tip">
+        <item>@string/speaking_media_and_content_game_tip_1</item>
+        <item>@string/speaking_media_and_content_game_tip_2</item>
+        <item>@string/speaking_media_and_content_game_tip_3</item>
+        <item>@string/speaking_media_and_content_game_tip_4</item>
+        <item>@string/speaking_media_and_content_game_tip_5</item>
+        <item>@string/speaking_media_and_content_game_tip_6</item>
+    </string-array>
+</resources>
