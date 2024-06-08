@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 베트남어 -->
 <resources>
-    <string name="app_name">KoApp!</string>
+    <string name="speaking_family_translate">gia đình</string>
+    <string name="speaking_school_translate">trường</string>
+    <string name="speaking_weather_and_season_translate">thời tiết và mùa</string>
+    <string name="speaking_travel_translate">du lịch</string>
+    <string name="speaking_shopping_translate">việc mua sắm</string>
+    <string name="speaking_media_and_content_translate">Truyền thông và nội dung</string>
 
     <!-- 말하기연습 화면의 주제 -->
     <!-- 학교 -->
     <string name="speaking_school_teacher">Nói chuyện với thầy giáo</string>
     <string name="speaking_school_friend">Nói chuyện với bạn</string>
+    <string-array name="speaking_school_subject">
+        <item>@string/speaking_school_teacher</item>
+        <item>@string/speaking_school_friend</item>
+    </string-array>
     <!-- 미디어와 콘텐츠 -->
     <string name="speaking_media_and_content_kpop">Nói về ca sĩ K-POP yêu thích</string>
     <string name="speaking_media_and_content_kdrama">Nói về bộ phim truyền hình Hàn Quốc mà bạn thích</string>
     <string name="speaking_media_and_content_game">Nói về trò chơi yêu thích</string>
+    <string-array name="speaking_media_and_content_subject">
+        <item>@string/speaking_media_and_content_kpop</item>
+        <item>@string/speaking_media_and_content_kdrama</item>
+        <item>@string/speaking_media_and_content_game</item>
+    </string-array>
 
     <!-- 말하기 연습 화면의 주제별 상황 -->
     <!-- 학교 -->

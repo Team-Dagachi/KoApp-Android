@@ -27,6 +27,21 @@
         android:name="com.dagachi.koapp_android.view.main.learner.speaking.SpeakingFragment"
         android:label="frm_speaking"
         tools:layout="@layout/fragment_speaking">
+        <action
+            android:id="@+id/action_speakingFrm_to_subjectFrm"
+            app:destination="@id/speakingSubjectFragment"/>
+    </fragment>
+
+    <!-- 말하기 연습의 주제별 화면 -->
+    <fragment
+        android:id="@+id/speakingSubjectFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.speaking.SpeakingSubjectFragment"
+        android:label="frm_speaking_subject"
+        tools:layout="@layout/fragment_speaking_subject">
+        <!-- 말하기 연습 주제 -->
+        <argument
+            android:name="subjectTitle"
+            app:argType="string" />
     </fragment>
 
     <!-- 스피킹 화면 -->

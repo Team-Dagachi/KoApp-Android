@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 한국어 -->
 <resources>
-    <string name="app_name">KoApp!</string>
+    <string name="speaking_family_translate">가족</string>
+    <string name="speaking_school_translate">학교</string>
+    <string name="speaking_weather_and_season_translate">날씨와 계절</string>
+    <string name="speaking_travel_translate">여행</string>
+    <string name="speaking_shopping_translate">쇼핑</string>
+    <string name="speaking_media_and_content_translate">미디어와 콘텐츠</string>
 
     <!-- 말하기연습 화면의 주제 -->
     <!-- 학교 -->
     <string name="speaking_school_teacher">선생님과 대화하기</string>
     <string name="speaking_school_friend">친구와 대화하기</string>
+    <string-array name="speaking_school_subject">
+        <item>@string/speaking_school_teacher</item>
+        <item>@string/speaking_school_friend</item>
+    </string-array>
     <!-- 미디어와 콘텐츠 -->
     <string name="speaking_media_and_content_kpop">좋아하는 K-POP 가수 말하기</string>
     <string name="speaking_media_and_content_kdrama">좋아하는 한국 드라마 말하기</string>
     <string name="speaking_media_and_content_game">좋아하는 게임 말하기</string>
+    <string-array name="speaking_media_and_content_subject">
+        <item>@string/speaking_media_and_content_kpop</item>
+        <item>@string/speaking_media_and_content_kdrama</item>
+        <item>@string/speaking_media_and_content_game</item>
+    </string-array>
 
     <!-- 말하기 연습 화면의 주제별 상황 -->
     <!-- 학교 -->
