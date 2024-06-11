@@ -115,4 +115,8 @@
     <string name="situation">tình huống</string>
     <string name="conversation_tip">Mẹo hội thoại</string>
     <string name="practice">luyện tập</string>
+
+    <!-- 말하기 연습 STT 관련 -->
+    <string name="speaking_recording_tooltip">Khi bạn nói xong hãy nhấn nút</string>
+    <string name="speaking_recording_analysis">Đang phân tích...</string>
 </resources>
