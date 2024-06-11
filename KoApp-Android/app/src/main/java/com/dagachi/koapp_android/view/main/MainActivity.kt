@@ -1,6 +1,10 @@
 package com.dagachi.koapp_android.view.main
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.view.View
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -8,7 +12,7 @@ import com.dagachi.koapp_android.R
 import com.dagachi.koapp_android.databinding.ActivityMainBinding
 import com.dagachi.koapp_android.view.base.BaseActivity
 
-class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private var backPressedTime: Long = 0
 
     override fun beforeSetContentView() {
@@ -16,17 +20,39 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
 
     override fun initAfterBinding() {
         // 네비게이션 설정
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_frm) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.main_frm) as NavHostFragment
         val navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bnvLearnerMain, navController)
+
+        /**
+         * 권한 설정 화면이 따로 없는것 같아서,
+         * 여기서 권한 요청을 합니다.
+         * 추후 권한 요청 화면으로 옮겨야 합니다.
+         * 추가로 요청할 권한이 더 있는 경우 array 에 추가 해주세요.
+         */
+        requestPermissions()
+    }
+
+    private fun requestPermissions() {
+        if (ContextCompat.checkSelfPermission(
+                this@MainActivity,
+                Manifest.permission.RECORD_AUDIO
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this@MainActivity,
+                arrayOf(Manifest.permission.RECORD_AUDIO),
+                0
+            )
+        }
     }
 
     // 학습자의 바텀 네비게이션 바 숨기기
     fun hideLearnerBottomNav(isHide: Boolean) {
         if (isHide) {
             binding.bnvLearnerMain.visibility = View.GONE
-        }
-        else {
+        } else {
             binding.bnvLearnerMain.visibility = View.VISIBLE
         }
     }
