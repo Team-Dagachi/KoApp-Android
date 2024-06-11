@@ -82,8 +82,8 @@ abstract class BaseFragment<VB: ViewDataBinding>(private val inflate: Inflate<VB
     }
 
     // 토스트 메시지 띄우기
-    fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    fun showToast(message: String, length: Int = Toast.LENGTH_SHORT) {
+        Toast.makeText(requireContext(), message, length).show()
     }
 
     // 툴 바 제목 설정
