@@ -8,6 +8,7 @@ import com.dagachi.koapp_android.data.remote.model.ChatMessage
 import com.dagachi.koapp_android.data.remote.model.ChatRole
 import com.dagachi.koapp_android.databinding.FragmentChattingBinding
 import com.dagachi.koapp_android.view.base.BaseFragment
+import com.dagachi.koapp_android.view.main.learner.speaking.adapter.ChattingAdapter
 import com.dagachi.koapp_android.viewmodel.main.learner.speaking.ChattingViewModel
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.BlockThreshold

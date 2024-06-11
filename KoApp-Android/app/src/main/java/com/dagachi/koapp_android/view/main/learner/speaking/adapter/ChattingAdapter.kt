@@ -1,4 +1,4 @@
-package com.dagachi.koapp_android.view.main.learner.speaking
+package com.dagachi.koapp_android.view.main.learner.speaking.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

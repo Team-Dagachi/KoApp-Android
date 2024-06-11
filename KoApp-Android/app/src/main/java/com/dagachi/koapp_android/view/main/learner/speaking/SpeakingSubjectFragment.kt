@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import com.dagachi.koapp_android.R
 import com.dagachi.koapp_android.databinding.FragmentSpeakingSubjectBinding
 import com.dagachi.koapp_android.view.base.BaseFragment
+import com.dagachi.koapp_android.view.main.learner.speaking.adapter.SpeakingSubjectAdapter
 import com.dagachi.koapp_android.viewmodel.main.learner.speaking.SpeakingSubjectViewModel
 import com.dagachi.koapp_android.widget.utils.LocaleUtils
 

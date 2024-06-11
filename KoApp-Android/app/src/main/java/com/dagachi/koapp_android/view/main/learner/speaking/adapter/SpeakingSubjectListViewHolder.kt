@@ -1,9 +1,10 @@
-package com.dagachi.koapp_android.view.main.learner.speaking
+package com.dagachi.koapp_android.view.main.learner.speaking.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.dagachi.koapp_android.R
 import com.dagachi.koapp_android.databinding.ItemSpeakingSubjectBinding
+import com.dagachi.koapp_android.view.main.learner.speaking.SpeakingSubject
 
 /* 학습자의 말하기 연습 주제별 화면의 RV 어댑터 */
 class SpeakingSubjectListViewHolder(val binding: ItemSpeakingSubjectBinding): RecyclerView.ViewHolder(binding.root) {

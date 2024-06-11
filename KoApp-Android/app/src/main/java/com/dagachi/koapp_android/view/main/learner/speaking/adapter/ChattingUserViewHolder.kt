@@ -1,4 +1,4 @@
-package com.dagachi.koapp_android.view.main.learner.speaking
+package com.dagachi.koapp_android.view.main.learner.speaking.adapter
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
