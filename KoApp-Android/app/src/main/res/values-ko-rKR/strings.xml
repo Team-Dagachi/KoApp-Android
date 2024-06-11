@@ -1,21 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 한국어 -->
 <resources>
-    <!-- 앱 이름 -->
-    <string name="app_name" translatable="false">KoApp!</string>
-
-    <!-- 학습자 화면의 BNV 메뉴 -->
-    <string name="bnv_menu_learner_1" translatable="false">홈</string>
-    <string name="bnv_menu_learner_2" translatable="false">숙제</string>
-    <string name="bnv_menu_learner_3" translatable="false">말하기연습</string>
-    <string name="bnv_menu_learner_4" translatable="false">생활표현</string>
-    <string name="bnv_menu_learner_5" translatable="false">노트</string>
-
-    <!-- 말하기연습 -->
-    <string name="speaking_family" translatable="false">가족</string>
-    <string name="speaking_school" translatable="false">학교</string>
-    <string name="speaking_weather_and_season" translatable="false">날씨와 계절</string>
-    <string name="speaking_travel" translatable="false">여행</string>
-    <string name="speaking_shopping" translatable="false">쇼핑</string>
-    <string name="speaking_media_and_content" translatable="false">미디어와 콘텐츠</string>
     <string name="speaking_family_translate">가족</string>
     <string name="speaking_school_translate">학교</string>
     <string name="speaking_weather_and_season_translate">날씨와 계절</string>
@@ -51,7 +36,7 @@
     <string name="speaking_media_and_content_game_situation">자신이 좋아하는 게임에 대하여 자유롭게 이야기해봅시다.</string>
 
     <!-- 말하기 연습 화면의 주제별 상황 팁 -->
-    <!-- 상황 팁 - 학교 -->
+    <!-- 학교 -->
     <string name="speaking_school_teacher_tip_1">학교 생활 적응도</string>
     <string name="speaking_school_teacher_tip_2">한국 생활 적응도</string>
     <string name="speaking_school_teacher_tip_3">한국어 수업을 들을 때의 어려움</string>
@@ -76,7 +61,7 @@
         <item>@string/speaking_school_friend_tip_4</item>
         <item>@string/speaking_school_friend_tip_5</item>
     </string-array>
-    <!-- 상황 팁 - 미디어와 콘텐츠 -->
+    <!-- 미디어와 콘텐츠 -->
     <string name="speaking_media_and_content_kpop_tip_1">좋아하는 K-POP 가수</string>
     <string name="speaking_media_and_content_kpop_tip_2">좋아하는 노래</string>
     <string name="speaking_media_and_content_kpop_tip_3">굿즈에 대한 지식</string>

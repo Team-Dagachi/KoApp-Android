@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -83,5 +84,10 @@ abstract class BaseFragment<VB: ViewDataBinding>(private val inflate: Inflate<VB
     // 토스트 메시지 띄우기
     fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    // 툴 바 제목 설정
+    fun setToolbarTitle(toolbar: TextView, title: String) {
+        toolbar.text = title
     }
 }
