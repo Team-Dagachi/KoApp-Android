@@ -32,6 +32,8 @@
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <!-- TTS 를 사용하기 위한 intent -->
+                <action android:name="android.intent.action.TTS_SERVICE" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
