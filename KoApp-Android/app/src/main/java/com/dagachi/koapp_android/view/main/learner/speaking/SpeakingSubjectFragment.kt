@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.fragment.app.viewModels
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dagachi.koapp_android.R
 import com.dagachi.koapp_android.databinding.FragmentSpeakingSubjectBinding
@@ -23,6 +24,9 @@ class SpeakingSubjectFragment: BaseFragment<FragmentSpeakingSubjectBinding>(Frag
         mainActivity!!.window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.Gray_100) // status bar 색상
 
         mainActivity?.hideLearnerBottomNav(true) // bnv 숨기기
+
+        // 리스트 초기화
+        subjectList.clear()
 
         // 뷰에 전달받은 데이터 적용
         val args: SpeakingSubjectFragmentArgs by navArgs()
@@ -44,6 +48,9 @@ class SpeakingSubjectFragment: BaseFragment<FragmentSpeakingSubjectBinding>(Frag
     }
 
     override fun initAfterBinding() {
+        // 뷰 초기화
+        binding.rvSpeakingSubject.removeAllViews()
+
         // 뒤로가기 버튼 클릭
         binding.ivSpeakingSubjectBack.setOnClickListener {
             view?.findNavController()?.popBackStack()
@@ -55,8 +62,18 @@ class SpeakingSubjectFragment: BaseFragment<FragmentSpeakingSubjectBinding>(Frag
         binding.rvSpeakingSubject.adapter = subjectAdapter
 
         // 주제 박스 클릭 이벤트
-        subjectAdapter.onSubjectClickListener = {
-            // TODO: 주제별 화면으로 이동
+        subjectAdapter.onSubjectClickListener = { pos ->
+            // 상황별 화면으로 이동
+            val actionToSpeakingSituation = SpeakingSubjectFragmentDirections.actionSubjectFrmToSituationFrm(
+                situationTitle = subjectList[pos].subject,
+                situationKorTitle =
+                if (subjectList[pos].subjectKor.isNullOrEmpty()) {
+                    subjectList[pos].subject
+                } else {
+                    subjectList[pos].subjectKor!!
+                }
+            )
+            findNavController().navigate(actionToSpeakingSituation)
         }
     }
 

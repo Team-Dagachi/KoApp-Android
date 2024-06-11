@@ -110,4 +110,9 @@
         <item>@string/speaking_media_and_content_game_tip_5</item>
         <item>@string/speaking_media_and_content_game_tip_6</item>
     </string-array>
+
+    <!-- 말하기 연습 -> 상황 -->
+    <string name="situation">情况</string>
+    <string name="conversation_tip">对话技巧</string>
+    <string name="practice">练习</string>
 </resources>

@@ -125,4 +125,9 @@
         <item>@string/speaking_media_and_content_game_tip_5</item>
         <item>@string/speaking_media_and_content_game_tip_6</item>
     </string-array>
+
+    <!-- 말하기 연습 -> 상황 -->
+    <string name="situation">상황</string>
+    <string name="conversation_tip">대화 Tip</string>
+    <string name="practice">연습하기</string>
 </resources>
