@@ -117,6 +117,6 @@
     <string name="practice">luyện tập</string>
 
     <!-- 말하기 연습 STT 관련 -->
-    <string name="speaking_recording_tooltip">Khi bạn nói xong hãy nhấn nút</string>
+    <string name="speaking_recording_tooltip">Tôi đang lắng nghe cẩn thận</string>
     <string name="speaking_recording_analysis">Đang phân tích...</string>
 </resources>

@@ -117,6 +117,6 @@
     <string name="practice">练习</string>
 
     <!-- 말하기 연습 STT 관련 -->
-    <string name="speaking_recording_tooltip">说完后，请按按钮</string>
+    <string name="speaking_recording_tooltip">我在认真听</string>
     <string name="speaking_recording_analysis">分析...</string>
 </resources>

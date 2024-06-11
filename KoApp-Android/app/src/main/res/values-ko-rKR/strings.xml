@@ -117,6 +117,6 @@
     <string name="practice">연습하기</string>
 
     <!-- 말하기 연습 STT 관련 -->
-    <string name="speaking_recording_tooltip">말하기가 끝났다면 버튼을 누르세요</string>
+    <string name="speaking_recording_tooltip">잘 듣고 있어요</string>
     <string name="speaking_recording_analysis">분석 중입니다...</string>
 </resources>
