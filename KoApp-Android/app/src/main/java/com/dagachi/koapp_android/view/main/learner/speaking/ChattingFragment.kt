@@ -1,10 +1,10 @@
 package com.dagachi.koapp_android.view.main.learner.speaking
 
 import android.content.Intent
-import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import android.speech.tts.TextToSpeech
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -20,6 +20,7 @@ import com.dagachi.koapp_android.databinding.FragmentChattingBinding
 import com.dagachi.koapp_android.view.base.BaseFragment
 import com.dagachi.koapp_android.view.main.learner.speaking.adapter.ChattingAdapter
 import com.dagachi.koapp_android.view.main.learner.speaking.listener.SpeakingRecognitionListener
+import com.dagachi.koapp_android.view.main.learner.speaking.tts.DagachiTTS
 import com.dagachi.koapp_android.viewmodel.main.learner.speaking.ChattingViewModel
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.BlockThreshold
@@ -36,6 +37,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
     private var messageList = mutableListOf<ChatMessage>() // 채팅 리스트
     private var systemInstruction: String? = null // 프롬프트
     private var initMessage: String? = null // 초기 메시지
+    private var dagachiTTS: DagachiTTS? = null // TTS 엔진
     private var isRecording = false
 
     override fun initViewCreated() {
@@ -116,11 +118,18 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
             startListening(getRecognitionListener())
         }
 
+        dagachiTTS = DagachiTTS.getInstance(requireContext(), TextToSpeech.OnInitListener {
+            initMessage?.let {
+                dagachiTTS?.textToSpeech(it, false)
+            }
+        }) // tts 엔진 초기화
+
         observeMessage() // 메시지 받기
     }
 
     private fun startListening(listener: RecognitionListener) {
         if (!isRecording) {
+            dagachiTTS?.stop()
             val recordingIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
                 putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, requireContext().packageName)
                 putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR")
@@ -201,6 +210,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
                 messageList.add(ChatMessage(ChatRole.MODEL, message.trim()))
                 chattingAdapter.setMessage(messageList)
                 scrollToBottom()
+                dagachiTTS?.textToSpeech(message, false)
             }
         })
     }
@@ -208,5 +218,11 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
     // 채팅 목록 하단으로 스크롤
     private fun scrollToBottom() {
         binding.rvChatting.smoothScrollToPosition(chattingAdapter.itemCount - 1)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        dagachiTTS?.close()
+        dagachiTTS = null
     }
 }
