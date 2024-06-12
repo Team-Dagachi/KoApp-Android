@@ -160,7 +160,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
 
     private fun setButtonNormalState() {
         binding.iBtnFragmentChattingMic.setImageResource(R.drawable.ic_mic_36)
-        binding.tvFragmentChattingRecTooltip.visibility = View.INVISIBLE
+        binding.tvFragmentChattingRecTooltip.visibility = View.GONE
     }
 
     private fun getRecognitionListener(): RecognitionListener =
