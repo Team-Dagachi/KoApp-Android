@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import com.dagachi.koapp_android.BuildConfig
 import com.dagachi.koapp_android.R
 import com.dagachi.koapp_android.data.remote.model.ChatMessage
 import com.dagachi.koapp_android.data.remote.model.ChatRole
@@ -22,21 +21,19 @@ import com.dagachi.koapp_android.view.main.learner.speaking.adapter.ChattingAdap
 import com.dagachi.koapp_android.view.main.learner.speaking.listener.SpeakingRecognitionListener
 import com.dagachi.koapp_android.view.main.learner.speaking.tts.DagachiTTS
 import com.dagachi.koapp_android.viewmodel.main.learner.speaking.ChattingViewModel
-import com.google.ai.client.generativeai.GenerativeModel
-import com.google.ai.client.generativeai.type.BlockThreshold
-import com.google.ai.client.generativeai.type.HarmCategory
-import com.google.ai.client.generativeai.type.SafetySetting
-import com.google.ai.client.generativeai.type.content
-import com.google.ai.client.generativeai.type.generationConfig
+import com.dagachi.koapp_android.viewmodel.main.learner.speaking.data.ChattingItem
 
 /* Gemini 챗봇과의 주제별 말하기연습 스피킹 화면 */
 class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingBinding::inflate) {
     private lateinit var viewModel: ChattingViewModel // 뷰모델
     private lateinit var speechRecognizer: SpeechRecognizer // STT 를 위한 sdk 객체
-    private var chattingAdapter = ChattingAdapter() // 채팅 어댑터
+    private lateinit var systemInstruction: String // 프롬프트
+    private lateinit var translateSystemInstruction: String // 번역용 프롬프트
+    private lateinit var initMessage: String // 초기 메시지
+    private lateinit var translatedInitMessage: String // 초기 번역 메시지
+
+    private var chattingAdapter: ChattingAdapter = ChattingAdapter() // 채팅 어댑터
     private var messageList = mutableListOf<ChatMessage>() // 채팅 리스트
-    private var systemInstruction: String? = null // 프롬프트
-    private var initMessage: String? = null // 초기 메시지
     private var dagachiTTS: DagachiTTS? = null // TTS 엔진
     private var isRecording = false
 
@@ -49,30 +46,37 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
         when (args.situationKorTitle) {
             // 학교(선생님, 친구)
             getString(R.string.speaking_school_teacher) -> {
-                systemInstruction = getString(R.string.prompt_school_teacher)
+                systemInstruction = getString(R.string.prompt_school_teacher) ?: ""
                 initMessage = "요새 학교 생활은 어때요?"
+                translatedInitMessage = "Cuộc sống học đường dạo này thế nào?"
             }
 
             getString(R.string.speaking_school_friend) -> {
-                systemInstruction = getString(R.string.prompt_school_friend)
-                initMessage = "내일 챙겨와야 하는 준비물이 뭐야?"
+                systemInstruction = getString(R.string.prompt_school_friend) ?: ""
+                initMessage = "내일 챙겨와야 하는 준비물이 뭐야?" ?: ""
+                translatedInitMessage = "Ngày mai tôi cần mang theo những gì?"
             }
             // 미디어와 콘텐츠(k-pop, 드라마, 게임)
             getString(R.string.speaking_media_and_content_kpop) -> {
-                systemInstruction = getString(R.string.prompt_media_and_content_kpop)
+                systemInstruction = getString(R.string.prompt_media_and_content_kpop) ?: ""
                 initMessage = "혹시 좋아하는 K-POP 가수 있어요?"
+                translatedInitMessage = "Bạn có ca sĩ K-POP yêu thích nào không?"
             }
 
             getString(R.string.speaking_media_and_content_kdrama) -> {
-                systemInstruction = getString(R.string.prompt_media_and_content_kdrama)
+                systemInstruction = getString(R.string.prompt_media_and_content_kdrama) ?: ""
                 initMessage = "혹시 좋아하는 한국 드라마 있어요?"
+                translatedInitMessage = "Bạn có bộ phim truyền hình Hàn Quốc yêu thích nào không?"
             }
 
             getString(R.string.speaking_media_and_content_game) -> {
-                systemInstruction = getString(R.string.prompt_media_and_content_game)
+                systemInstruction = getString(R.string.prompt_media_and_content_game) ?: ""
                 initMessage = "혹시 좋아하는 게임 있어요?"
+                translatedInitMessage = "Bạn có trò chơi yêu thích nào không?"
             }
         }
+
+        translateSystemInstruction = getString(R.string.prompt_translate_vietnam) ?: ""
 
         // 툴바 제목 설정
         setToolbarTitle(binding.toolbarChatting.tvSubToolbarTitle, args.situationKorTitle)
@@ -84,32 +88,16 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
             view?.findNavController()?.popBackStack()
         }
 
-        val model = GenerativeModel(
-            "gemini-1.5-flash",
-            BuildConfig.GEMINI_API_KEY,
-            generationConfig = generationConfig {
-                temperature = 1f
-                topK = 64
-                topP = 0.95f
-                maxOutputTokens = 100
-                responseMimeType = "text/plain"
-            },
-            safetySettings = listOf(
-                SafetySetting(HarmCategory.HARASSMENT, BlockThreshold.MEDIUM_AND_ABOVE),
-                SafetySetting(HarmCategory.HATE_SPEECH, BlockThreshold.MEDIUM_AND_ABOVE),
-                SafetySetting(HarmCategory.SEXUALLY_EXPLICIT, BlockThreshold.MEDIUM_AND_ABOVE),
-                SafetySetting(HarmCategory.DANGEROUS_CONTENT, BlockThreshold.MEDIUM_AND_ABOVE),
-            ),
-            systemInstruction = content { text(systemInstruction!!) },
-        )
-
         viewModel = ViewModelProvider(
             this,
-            ChattingViewModel.ChattingViewModelFactory(model)
+            ChattingViewModel.ChattingViewModelFactory(
+                systemInstruction,
+                translateSystemInstruction
+            )
         )[ChattingViewModel::class.java]
 
         // 초기 질문 메시지 추가
-        messageList.add(ChatMessage(ChatRole.MODEL, initMessage!!))
+        messageList.add(ChatMessage(ChatRole.MODEL, initMessage, translatedInitMessage))
 
         binding.rvChatting.adapter = chattingAdapter // 어댑터 연결
         chattingAdapter.setMessage(messageList) // 초기 질문 넣기
@@ -190,12 +178,8 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
                                 ?.joinToString("") ?: ""
                         if (userMessage.isNotEmpty()) {
                             viewModel.geminiChat(userMessage)
-                            messageList.add(ChatMessage(ChatRole.USER, userMessage))
-                            chattingAdapter.setMessage(messageList)
-                            scrollToBottom()
                         }
                         isRecording = false
-                        setButtonNormalState()
                     }.onFailure {
                         showRecognizerErrorToast(-1) // 결과 전송중 오류 이므로 -1 로 보냅니다.
                     }
@@ -206,16 +190,41 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
             )
         }
 
-    // 메시지 받기
-    private fun observeMessage() {
-        viewModel.chattingResponse.observe(viewLifecycleOwner, Observer { response ->
-            response.text?.let { message ->
-                messageList.add(ChatMessage(ChatRole.MODEL, message.trim()))
+    private fun getChattingResponseObserver(role: ChatRole): Observer<ChattingItem?> =
+        Observer<ChattingItem?> {
+            it?.let { response ->
+                messageList.add(
+                    ChatMessage(
+                        role,
+                        response.message.trim(),
+                        response.translatedMessage.trim()
+                    )
+                )
                 chattingAdapter.setMessage(messageList)
                 scrollToBottom()
-                dagachiTTS?.textToSpeech(message, false)
+
+                when (role) {
+                    ChatRole.MODEL -> {
+                        dagachiTTS?.textToSpeech(response.message, false)
+                    }
+
+                    else -> {}
+                }
+
+                setButtonNormalState()
             }
-        })
+        }
+
+    // 메시지 받기
+    private fun observeMessage() {
+        viewModel.modelChattingResponse.observe(
+            viewLifecycleOwner,
+            getChattingResponseObserver(ChatRole.MODEL)
+        )
+        viewModel.userChattingResponse.observe(
+            viewLifecycleOwner,
+            getChattingResponseObserver(ChatRole.USER)
+        )
     }
 
     // 채팅 목록 하단으로 스크롤

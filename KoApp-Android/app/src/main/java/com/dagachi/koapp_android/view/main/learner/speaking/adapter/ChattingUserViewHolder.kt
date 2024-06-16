@@ -17,6 +17,7 @@ class ChattingUserViewHolder(val context: Context, val binding: ItemChattingUser
     fun bind(item: ChatMessage) {
         if (item.role == ChatRole.USER) {
             binding.chatRoleModel = item
+
             binding.iBtnItemChattingUserSpeaker.setOnClickListener {
                 if (item.ttsCount == 2) {
                     dagachiTTS.textToSpeech(item.message)
@@ -27,6 +28,21 @@ class ChattingUserViewHolder(val context: Context, val binding: ItemChattingUser
                 }
                 item.ttsCount += 1
             }
+
+            binding.iBtnItemChattingUserTranslate.setOnClickListener {
+                if (item.isShowTranslation) {
+                    item.isShowTranslation = false
+                    binding.tvItemChattingUserBubble.text = item.message
+                    binding.iBtnItemChattingUserTranslate.backgroundTintList =
+                        ColorStateList.valueOf(ContextCompat.getColor(context, R.color.Main_30))
+                } else {
+                    item.isShowTranslation = true
+                    binding.tvItemChattingUserBubble.text = item.translateMessage
+                    binding.iBtnItemChattingUserTranslate.backgroundTintList =
+                        ColorStateList.valueOf(ContextCompat.getColor(context, R.color.Main_70))
+                }
+            }
+
             binding.executePendingBindings()
         }
     }
