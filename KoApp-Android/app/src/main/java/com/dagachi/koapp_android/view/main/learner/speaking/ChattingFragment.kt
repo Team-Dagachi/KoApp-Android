@@ -160,6 +160,8 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
 
     private fun setButtonNormalState() {
         binding.iBtnFragmentChattingMic.setImageResource(R.drawable.ic_mic_36)
+        binding.iBtnFragmentChattingMic.visibility = View.VISIBLE
+        binding.iBtnFragmentChattingRecAnimation.visibility = View.GONE
         binding.tvFragmentChattingRecTooltip.visibility = View.GONE
     }
 
@@ -168,7 +170,8 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
             val button = binding.iBtnFragmentChattingMic
             SpeakingRecognitionListener(
                 {
-                    button.setImageResource(R.drawable.ic_rec_36)
+                    binding.iBtnFragmentChattingMic.visibility = View.GONE
+                    binding.iBtnFragmentChattingRecAnimation.visibility = View.VISIBLE
                     text = getString(R.string.speaking_recording_tooltip)
                     visibility = View.VISIBLE
                 },
