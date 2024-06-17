@@ -17,6 +17,7 @@
         android:orientation="vertical"
         android:clipToPadding="false"
         android:paddingTop="24dp"
+        android:paddingStart="16dp"
         android:paddingBottom="12dp">
 
         <!-- 채팅 status -->
@@ -40,6 +41,7 @@
             android:text="@{chatRoleModel.message}"
             style="@style/Korean_Body1"
             android:padding="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/bubble_user_bg"
             android:maxWidth="300dp"
             tools:text="갑니다. 속초로."
@@ -78,9 +80,11 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintWidth_max="270dp"
                 android:orientation="vertical"
+                android:clipToPadding="false"
                 android:background="@drawable/bubble_user_bg"
                 android:backgroundTint="@color/Orange_Light"
                 android:padding="16dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
@@ -138,6 +142,7 @@
                 android:backgroundTint="@color/Orange_Light"
                 style="@style/Gray_600_12dp_Elevation"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintTop_toBottomOf="@id/lLayout_item_chatting_user_feedback_bubble"
                 app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -149,8 +154,10 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="end"
+            android:clipToPadding="false"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
             android:paddingBottom="12dp"
-            android:layout_marginTop="12dp"
             app:layout_constraintTop_toBottomOf="@id/tv_item_chatting_user_bubble"
             app:layout_constraintEnd_toEndOf="parent">
 
