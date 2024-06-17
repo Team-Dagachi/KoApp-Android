@@ -1,6 +1,7 @@
 [versions]
 agp = "8.1.3"
 generativeai = "0.6.0"
+lottie = "6.4.1"
 kotlin = "1.8.20"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -21,6 +22,7 @@ legacySupportV4 = "1.0.0"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 generativeai = { module = "com.google.ai.client.generativeai:generativeai", version.ref = "generativeai" }
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

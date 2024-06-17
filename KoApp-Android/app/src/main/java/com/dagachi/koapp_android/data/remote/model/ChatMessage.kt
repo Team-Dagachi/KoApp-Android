@@ -11,5 +11,8 @@ enum class ChatRole {
 // 챗봇 모델
 data class ChatMessage(
     val role: ChatRole, // 역할
-    var message: String // 메시지
+    var message: String, // 메시지
+    var translateMessage: String = "", // 번역된 메시지
+    var isShowTranslation: Boolean = false,
+    var ttsCount: Int = 0, // tts 를 사용한 횟수
 )

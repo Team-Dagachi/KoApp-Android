@@ -130,4 +130,8 @@
     <string name="situation">상황</string>
     <string name="conversation_tip">대화 Tip</string>
     <string name="practice">연습하기</string>
+
+    <!-- 말하기 연습 STT 관련 -->
+    <string name="speaking_recording_tooltip">잘 듣고 있어요</string>
+    <string name="speaking_recording_analysis">분석 중입니다...</string>
 </resources>

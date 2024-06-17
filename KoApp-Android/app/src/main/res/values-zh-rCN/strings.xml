@@ -115,4 +115,8 @@
     <string name="situation">情况</string>
     <string name="conversation_tip">对话技巧</string>
     <string name="practice">练习</string>
+
+    <!-- 말하기 연습 STT 관련 -->
+    <string name="speaking_recording_tooltip">我在认真听</string>
+    <string name="speaking_recording_analysis">分析...</string>
 </resources>
