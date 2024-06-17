@@ -66,6 +66,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
+            <Button
+                android:id="@+id/btn_chatting_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="힌트 보기"
+                style="@style/Korean_Button2"
+                android:textColor="@color/White"
+                android:paddingTop="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="12dp"
+                android:drawableStart="@drawable/ic_bulb_24"
+                android:drawablePadding="8dp"
+                android:background="@drawable/all_tooltip_box"
+                android:backgroundTint="@color/Orange_Medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iBtn_fragment_chatting_mic"
+                app:layout_constraintBottom_toBottomOf="@id/iBtn_fragment_chatting_mic"
+                app:layout_constraintTop_toTopOf="@id/iBtn_fragment_chatting_mic"/>
+
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/iBtn_fragment_chatting_rec_animation"
                 style="@style/Gray_600_12dp_Elevation"

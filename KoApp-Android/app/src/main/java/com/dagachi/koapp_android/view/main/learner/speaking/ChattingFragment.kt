@@ -5,6 +5,7 @@ import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -21,12 +22,15 @@ import com.dagachi.koapp_android.view.main.learner.speaking.adapter.ChattingAdap
 import com.dagachi.koapp_android.view.main.learner.speaking.listener.SpeakingRecognitionListener
 import com.dagachi.koapp_android.view.main.learner.speaking.tts.DagachiTTS
 import com.dagachi.koapp_android.viewmodel.main.learner.speaking.ChattingViewModel
+import com.dagachi.koapp_android.viewmodel.main.learner.speaking.FeedbackViewModel
 import com.dagachi.koapp_android.viewmodel.main.learner.speaking.data.ChattingItem
+import com.dagachi.koapp_android.viewmodel.main.learner.speaking.data.FeedbackItem
 
 /* Gemini 챗봇과의 주제별 말하기연습 스피킹 화면 */
 class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingBinding::inflate) {
-    private lateinit var viewModel: ChattingViewModel // 뷰모델
-    private lateinit var speechRecognizer: SpeechRecognizer // STT 를 위한 sdk 객체
+    private lateinit var viewModel: ChattingViewModel // 채팅 뷰모델
+    private lateinit var feedbackViewModel: FeedbackViewModel // 피드백 뷰모델
+
     private lateinit var systemInstruction: String // 프롬프트
     private lateinit var translateSystemInstruction: String // 번역용 프롬프트
     private lateinit var initMessage: String // 초기 메시지
@@ -34,8 +38,11 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
 
     private var chattingAdapter: ChattingAdapter = ChattingAdapter() // 채팅 어댑터
     private var messageList = mutableListOf<ChatMessage>() // 채팅 리스트
+    private lateinit var speechRecognizer: SpeechRecognizer // STT 를 위한 sdk 객체
     private var dagachiTTS: DagachiTTS? = null // TTS 엔진
-    private var isRecording = false
+    private var isRecording = false // 녹음중 여부
+
+    private var isShowHint: Boolean = false // 힌트 버튼 클릭 여부
 
     override fun initViewCreated() {
         mainActivity!!.hideLearnerBottomNav(true)
@@ -88,6 +95,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
             view?.findNavController()?.popBackStack()
         }
 
+        // 채팅 뷰모델 연결
         viewModel = ViewModelProvider(
             this,
             ChattingViewModel.ChattingViewModelFactory(
@@ -96,25 +104,54 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
             )
         )[ChattingViewModel::class.java]
 
+        // 피드백 뷰모델 연결
+        feedbackViewModel = ViewModelProvider(
+            this,
+            FeedbackViewModel.FeedbackViewModelFactory(
+                getString(R.string.prompt_feedback),
+                translateSystemInstruction
+            )
+        )[FeedbackViewModel::class.java]
+
         // 초기 질문 메시지 추가
         messageList.add(ChatMessage(ChatRole.MODEL, initMessage, translatedInitMessage))
 
         binding.rvChatting.adapter = chattingAdapter // 어댑터 연결
-        chattingAdapter.setMessage(messageList) // 초기 질문 넣기
+        chattingAdapter.setMessage(ChatMessage(ChatRole.MODEL, initMessage, translatedInitMessage)) // 초기 질문 넣기
 
+        // 마이크 버튼 클릭 이벤트
         binding.iBtnFragmentChattingMic.setOnClickListener {
             startListening(getRecognitionListener())
         }
 
+        // 힌트 버튼 클릭 이벤트
+        binding.btnChattingHint.setOnClickListener {
+            // 변수 상태 변경
+            isShowHint = !isShowHint
+
+            // 힌트 숨기기
+            if (isShowHint) {
+                binding.btnChattingHint.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.Orange_Medium)
+                binding.btnChattingHint.text = "힌트 보기"
+            }
+            // 힌트 보이기
+            else {
+                binding.btnChattingHint.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.Gray_500)
+                binding.btnChattingHint.text = "힌트 숨기기"
+            }
+        }
+
+        // tts 엔진 초기화
         dagachiTTS = DagachiTTS.getInstance(requireContext(), TextToSpeech.OnInitListener {
-            initMessage?.let {
+            initMessage.let {
                 dagachiTTS?.textToSpeech(it, false)
             }
-        }) // tts 엔진 초기화
+        })
 
-        observeMessage() // 메시지 받기
+        observeMessage() // 채팅 메시지 받기
     }
 
+    // 사용자의 목소리 녹음 시작
     private fun startListening(listener: RecognitionListener) {
         if (!isRecording) {
             dagachiTTS?.stop()
@@ -129,6 +166,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
         }
     }
 
+    // stt 관련 토스트 메시지
     private fun showRecognizerErrorToast(recognizerError: Int) {
         val errorMessage = when (recognizerError) {
             SpeechRecognizer.ERROR_AUDIO -> "오디오 레코딩 오류"
@@ -146,6 +184,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
         isRecording = false
     }
 
+    // mic 버튼 기본 상태(녹음 중 애니메이션 숨기기)
     private fun setButtonNormalState() {
         binding.iBtnFragmentChattingMic.setImageResource(R.drawable.ic_mic_36)
         binding.iBtnFragmentChattingMic.visibility = View.VISIBLE
@@ -158,12 +197,14 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
             val button = binding.iBtnFragmentChattingMic
             SpeakingRecognitionListener(
                 {
-                    binding.iBtnFragmentChattingMic.visibility = View.GONE
+                    // 녹음중 애니메이션 띄우기
+                    binding.iBtnFragmentChattingMic.visibility = View.INVISIBLE
                     binding.iBtnFragmentChattingRecAnimation.visibility = View.VISIBLE
                     text = getString(R.string.speaking_recording_tooltip)
                     visibility = View.VISIBLE
                 },
                 {
+                    // 로딩 이미지 띄우기
                     button.setImageResource(R.drawable.ic_loading_36)
                     text = getString(R.string.speaking_recording_analysis)
                     visibility = View.VISIBLE
@@ -177,7 +218,8 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
                             it?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                                 ?.joinToString("") ?: ""
                         if (userMessage.isNotEmpty()) {
-                            viewModel.geminiChat(userMessage)
+                            viewModel.geminiChat(userMessage) // 채팅 모델 연결
+                            feedbackViewModel.geminiChat(userMessage) // 피드백 모델 연결
                         }
                         isRecording = false
                     }.onFailure {
@@ -190,6 +232,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
             )
         }
 
+    // 채팅 챗봇 답장 관찰하기
     private fun getChattingResponseObserver(role: ChatRole): Observer<ChattingItem?> =
         Observer<ChattingItem?> {
             it?.let { response ->
@@ -197,10 +240,17 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
                     ChatMessage(
                         role,
                         response.message.trim(),
-                        response.translatedMessage.trim()
+                        response.translatedMessage.trim(),
                     )
                 )
-                chattingAdapter.setMessage(messageList)
+
+                chattingAdapter.setMessage(
+                    ChatMessage(
+                        role,
+                        response.message.trim(),
+                        response.translatedMessage.trim(),
+                    )
+                )
                 scrollToBottom()
 
                 when (role) {
@@ -215,15 +265,40 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
             }
         }
 
+    // 피드백 챗봇 답장 관찰하기
+    private fun getFeedbackResponseObserver(): Observer<FeedbackItem?> =
+        Observer {
+            it?.let { response ->
+                Log.e("response 피드백", response.message)
+
+                // 리스트의 가장 마지막에 있는 유저 값 가져오기
+                val message: ChatMessage? = messageList.findLast { it.role == ChatRole.USER }
+
+                message?.feedbackMessage = response.feedbackMessage
+                message?.feedbackReason = response.feedbackReason
+                message?.translatedFeedbackReason = response.translatedFeedbackReason
+
+                chattingAdapter.setMessage(message)
+                scrollToBottom()
+            }
+        }
+
     // 메시지 받기
     private fun observeMessage() {
+        // 제미나이 메시지 저장
         viewModel.modelChattingResponse.observe(
             viewLifecycleOwner,
             getChattingResponseObserver(ChatRole.MODEL)
         )
+        // 사용자 메시지 저장
         viewModel.userChattingResponse.observe(
             viewLifecycleOwner,
             getChattingResponseObserver(ChatRole.USER)
+        )
+        // 피드백 메시지 저장
+        feedbackViewModel.feedbackChattingResponse.observe(
+            viewLifecycleOwner,
+            getFeedbackResponseObserver()
         )
     }
 

@@ -1,10 +1,14 @@
 package com.dagachi.koapp_android.view.main.learner.speaking.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.dagachi.koapp_android.R
 import com.dagachi.koapp_android.data.remote.model.ChatMessage
 import com.dagachi.koapp_android.data.remote.model.ChatRole
 import com.dagachi.koapp_android.databinding.ItemChattingModelBinding
@@ -43,6 +47,23 @@ class ChattingAdapter : RecyclerView.Adapter<ViewHolder>() {
             VIEW_TYPE_USER -> {
                 val userViewHolder = holder as ChattingUserViewHolder
                 userViewHolder.bind(message)
+
+                // 사용자의 말풍선을 클릭했을 경우
+                userViewHolder.binding.tvItemChattingUserBubble.setOnClickListener {
+                    // 피드백이 있는 경우
+                    if (!message.feedbackMessage.isNullOrEmpty()) {
+                        // 피드백 박스가 보인다면
+                        if (userViewHolder.binding.cLayoutItemChattingUserFeedback.visibility == View.VISIBLE) {
+                            userViewHolder.binding.cLayoutItemChattingUserFeedback.visibility = View.GONE
+                            userViewHolder.binding.lLayoutItemChattingUserBtn.visibility = View.VISIBLE
+                        }
+                        // 피드백 박스가 안 보인다면
+                        else {
+                            userViewHolder.binding.cLayoutItemChattingUserFeedback.visibility = View.VISIBLE
+                            userViewHolder.binding.lLayoutItemChattingUserBtn.visibility = View.GONE
+                        }
+                    }
+                }
             }
         }
     }
@@ -59,10 +80,22 @@ class ChattingAdapter : RecyclerView.Adapter<ViewHolder>() {
 
     // 메시지 추가
     @SuppressLint("NotifyDataSetChanged")
-    fun setMessage(message: MutableList<ChatMessage>) {
+    fun setMessage(message: ChatMessage?) {
         this.messages.apply {
-            clear()
-            addAll(message)
+            //clear()
+            if (message != null) {
+                // 메시지가 일치하는지 확인
+                val messageItem: ChatMessage? = messages.findLast { it.message == message.message }
+                if (messageItem != null) {
+                    // 값 교체
+                    messageItem.feedbackMessage = message.feedbackMessage
+                    messageItem.feedbackReason = message.feedbackReason
+                    messageItem.translatedFeedbackReason = message.translatedFeedbackReason
+                }
+                else {
+                    add(message)
+                }
+            }
         }
         notifyDataSetChanged()
     }
