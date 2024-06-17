@@ -1,5 +1,6 @@
 package com.dagachi.koapp_android.view.main.learner.speaking
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
@@ -23,16 +24,20 @@ import com.dagachi.koapp_android.view.main.learner.speaking.listener.SpeakingRec
 import com.dagachi.koapp_android.view.main.learner.speaking.tts.DagachiTTS
 import com.dagachi.koapp_android.viewmodel.main.learner.speaking.ChattingViewModel
 import com.dagachi.koapp_android.viewmodel.main.learner.speaking.FeedbackViewModel
+import com.dagachi.koapp_android.viewmodel.main.learner.speaking.HintViewModel
 import com.dagachi.koapp_android.viewmodel.main.learner.speaking.data.ChattingItem
 import com.dagachi.koapp_android.viewmodel.main.learner.speaking.data.FeedbackItem
+import com.dagachi.koapp_android.viewmodel.main.learner.speaking.data.HintItem
 
 /* Gemini 챗봇과의 주제별 말하기연습 스피킹 화면 */
 class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingBinding::inflate) {
     private lateinit var viewModel: ChattingViewModel // 채팅 뷰모델
     private lateinit var feedbackViewModel: FeedbackViewModel // 피드백 뷰모델
+    private lateinit var hintViewModel: HintViewModel // 힌트 뷰모델
 
     private lateinit var systemInstruction: String // 프롬프트
     private lateinit var translateSystemInstruction: String // 번역용 프롬프트
+    private lateinit var hintSystemInstruction: String // 힌트 프롬프트
     private lateinit var initMessage: String // 초기 메시지
     private lateinit var translatedInitMessage: String // 초기 번역 메시지
 
@@ -43,6 +48,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
     private var isRecording = false // 녹음중 여부
 
     private var isShowHint: Boolean = false // 힌트 버튼 클릭 여부
+    private var hintMessageList = ArrayList<String>() // 힌트 메시지 리스트
 
     override fun initViewCreated() {
         mainActivity!!.hideLearnerBottomNav(true)
@@ -56,6 +62,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
                 systemInstruction = getString(R.string.prompt_school_teacher) ?: ""
                 initMessage = "요새 학교 생활은 어때요?"
                 translatedInitMessage = "Cuộc sống học đường dạo này thế nào?"
+                hintSystemInstruction = getString(R.string.prompt_hint_teacher) ?: ""
             }
 
             getString(R.string.speaking_school_friend) -> {
@@ -74,6 +81,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
                 systemInstruction = getString(R.string.prompt_media_and_content_kdrama) ?: ""
                 initMessage = "혹시 좋아하는 한국 드라마 있어요?"
                 translatedInitMessage = "Bạn có bộ phim truyền hình Hàn Quốc yêu thích nào không?"
+                hintSystemInstruction = getString(R.string.prompt_hint_kdrama) ?: ""
             }
 
             getString(R.string.speaking_media_and_content_game) -> {
@@ -89,6 +97,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
         setToolbarTitle(binding.toolbarChatting.tvSubToolbarTitle, args.situationKorTitle)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun initAfterBinding() {
         // 뒤로가기 버튼 클릭 이벤트
         binding.toolbarChatting.ivSubToolbarBack.setOnClickListener {
@@ -113,6 +122,15 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
             )
         )[FeedbackViewModel::class.java]
 
+        // 힌트 뷰모델 연결
+        hintViewModel = ViewModelProvider(
+            this,
+            HintViewModel.HintViewModelFactory(
+                hintSystemInstruction,
+                getString(R.string.prompt_translate_korean)
+            )
+        )[HintViewModel::class.java]
+
         // 초기 질문 메시지 추가
         messageList.add(ChatMessage(ChatRole.MODEL, initMessage, translatedInitMessage))
 
@@ -126,19 +144,53 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
 
         // 힌트 버튼 클릭 이벤트
         binding.btnChattingHint.setOnClickListener {
-            // 변수 상태 변경
-            isShowHint = !isShowHint
-
             // 힌트 숨기기
             if (isShowHint) {
                 binding.btnChattingHint.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.Orange_Medium)
                 binding.btnChattingHint.text = "힌트 보기"
+
+                chattingAdapter.changeHintView(true,
+                    ChatMessage(
+                        role = ChatRole.HINT,
+                        message = hintMessageList[0],
+                        hintMessage = hintMessageList[1],
+                        translatedHint = hintMessageList[2],
+                    )
+                )
             }
             // 힌트 보이기
             else {
                 binding.btnChattingHint.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.Gray_500)
                 binding.btnChattingHint.text = "힌트 숨기기"
+
+                // 리스트의 가장 마지막에 있는 힌트 값 가져오기
+                //val hintMessage: ChatMessage? = messageList.findLast { it.role == ChatRole.HINT }
+
+                // 기존에 힌트가 있다면
+                if (hintMessageList.isNotEmpty()) {
+                    chattingAdapter.changeHintView(false,
+                        ChatMessage(
+                            role = ChatRole.HINT,
+                            message = hintMessageList[0],
+                            hintMessage = hintMessageList[1],
+                            translatedHint = hintMessageList[2],
+                        )
+                    )
+                }
+                // 없다면
+                else {
+                    // 리스트의 가장 마지막에 있는 모델 값 가져오기
+                    val message: ChatMessage? = messageList.findLast { it.role == ChatRole.MODEL }
+
+                    if (message != null) {
+                        // 힌트 챗봇 연결
+                        hintViewModel.geminiChat(message.message)
+                    }
+                }
             }
+
+            // 변수 상태 변경
+            isShowHint = !isShowHint
         }
 
         // tts 엔진 초기화
@@ -218,6 +270,25 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
                             it?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                                 ?.joinToString("") ?: ""
                         if (userMessage.isNotEmpty()) {
+                            // 힌트가 채팅 리스트에 있다면
+                            if (chattingAdapter.getHintInList()) {
+                                // 힌트 숨기기
+                                chattingAdapter.changeHintView(true,
+                                    ChatMessage(
+                                        role = ChatRole.HINT,
+                                        message = hintMessageList[0],
+                                        hintMessage = hintMessageList[1],
+                                        translatedHint = hintMessageList[2],
+                                    )
+                                )
+                            }
+
+                            // 변수 상태 변경
+                            binding.btnChattingHint.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.Orange_Medium)
+                            binding.btnChattingHint.text = "힌트 보기"
+                            isShowHint = false
+                            hintMessageList.clear() // 힌트 초기화
+
                             viewModel.geminiChat(userMessage) // 채팅 모델 연결
                             feedbackViewModel.geminiChat(userMessage) // 피드백 모델 연결
                         }
@@ -283,6 +354,31 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
             }
         }
 
+    // 힌트 챗봇 답장 관찰하기
+    private fun getHintResponseObserver(): Observer<HintItem?> =
+        Observer {
+            it?.let { response ->
+                Log.e("response 힌트", response.hintMessage)
+
+                // 힌트 저장
+                hintMessageList.clear() // 리스트 초기화
+                hintMessageList.add(response.message)
+                hintMessageList.add(response.hintMessage)
+                hintMessageList.add(response.translatedHint)
+
+                val newMessage = ChatMessage(
+                    role = ChatRole.HINT,
+                    message = "힌트",
+                    hintMessage = response.hintMessage,
+                    translatedHint = response.translatedHint,
+                )
+
+                chattingAdapter.setMessage(newMessage)
+
+                scrollToBottom()
+            }
+        }
+
     // 메시지 받기
     private fun observeMessage() {
         // 제미나이 메시지 저장
@@ -299,6 +395,11 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
         feedbackViewModel.feedbackChattingResponse.observe(
             viewLifecycleOwner,
             getFeedbackResponseObserver()
+        )
+        // 힌트 메시지 저장
+        hintViewModel.hintResponse.observe(
+            viewLifecycleOwner,
+            getHintResponseObserver()
         )
     }
 

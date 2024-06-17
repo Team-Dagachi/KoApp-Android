@@ -5,12 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.dagachi.koapp_android.R
 import com.dagachi.koapp_android.data.remote.model.ChatMessage
 import com.dagachi.koapp_android.data.remote.model.ChatRole
+import com.dagachi.koapp_android.databinding.ItemChattingHintBinding
 import com.dagachi.koapp_android.databinding.ItemChattingModelBinding
 import com.dagachi.koapp_android.databinding.ItemChattingUserBinding
 import com.dagachi.koapp_android.widget.ApplicationClass.Companion.applicationContext
@@ -22,6 +21,7 @@ class ChattingAdapter : RecyclerView.Adapter<ViewHolder>() {
     companion object {
         const val VIEW_TYPE_MODEL = 0 // 모델
         const val VIEW_TYPE_USER = 1 // 사용자
+        const val VIEW_TYPE_HINT = 2 // 힌트
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,6 +32,9 @@ class ChattingAdapter : RecyclerView.Adapter<ViewHolder>() {
             }
             VIEW_TYPE_USER -> {
                 ChattingUserViewHolder(applicationContext(), ItemChattingUserBinding.inflate(inflater, parent, false))
+            }
+            VIEW_TYPE_HINT -> {
+                ChattingHintViewHolder(applicationContext(), ItemChattingHintBinding.inflate(inflater, parent, false))
             }
             else -> throw IllegalArgumentException("Chatting Bot ViewHolder 생성 실패")
         }
@@ -65,6 +68,10 @@ class ChattingAdapter : RecyclerView.Adapter<ViewHolder>() {
                     }
                 }
             }
+            VIEW_TYPE_HINT -> {
+                val hintViewHolder = holder as ChattingHintViewHolder
+                hintViewHolder.bind(message)
+            }
         }
     }
 
@@ -72,6 +79,7 @@ class ChattingAdapter : RecyclerView.Adapter<ViewHolder>() {
         return when (messages[position].role) {
             ChatRole.MODEL -> VIEW_TYPE_MODEL
             ChatRole.USER -> VIEW_TYPE_USER
+            ChatRole.HINT -> VIEW_TYPE_HINT
             else -> -1
         }
     }
@@ -104,5 +112,29 @@ class ChattingAdapter : RecyclerView.Adapter<ViewHolder>() {
     fun resetChatting() {
         notifyItemRangeRemoved(0, messages.size)
         messages.clear()
+    }
+
+    // 힌트 상태 전환
+    @SuppressLint("NotifyDataSetChanged")
+    fun changeHintView(isShowHint: Boolean, message: ChatMessage?) {
+        // 힌트가 보이는 상태라면
+        if (isShowHint) {
+            val hintMessage = messages.find { it.role == ChatRole.HINT }
+            if (hintMessage != null) {
+                messages.remove(hintMessage) // 리스트에서 삭제
+            }
+            notifyDataSetChanged()
+        }
+        // 힌트가 안 보이는 상태라면
+        else {
+            messages.add(message!!) // 리스트에 추가
+            notifyDataSetChanged()
+        }
+    }
+
+    // 리스트에 힌트가 있는지에 대한 여부 반환
+    fun getHintInList(): Boolean {
+        val hintMessage = messages.find { it.role == ChatRole.HINT }
+        return hintMessage != null
     }
 }
