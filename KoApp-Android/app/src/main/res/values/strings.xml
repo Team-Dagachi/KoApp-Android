@@ -134,4 +134,7 @@
     <!-- 말하기 연습 STT 관련 -->
     <string name="speaking_recording_tooltip">잘 듣고 있어요</string>
     <string name="speaking_recording_analysis">분석 중입니다...</string>
+
+    <!-- 말하기 연습 힌트 -->
+    <string name="hint" translatable="false">💡 힌트</string>
 </resources>
