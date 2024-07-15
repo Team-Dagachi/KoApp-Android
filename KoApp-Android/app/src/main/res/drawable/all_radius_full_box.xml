@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 툴팁 박스 -->
+<!-- radius가 큰 박스 (툴팁, 홈 화면의 이번주 출석률 박스 등에서 사용) -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <solid android:color="@color/Gray_600" />
