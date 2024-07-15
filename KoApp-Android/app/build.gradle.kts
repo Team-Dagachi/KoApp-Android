@@ -75,4 +75,7 @@ dependencies {
 
     // lottie animation
     implementation(libs.lottie)
+
+    // flexbox layout
+    implementation(libs.flexbox)
 }
