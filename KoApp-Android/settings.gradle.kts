@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "KoApp-Android"
 include(":app")
+include(":domain")
+include(":data")
