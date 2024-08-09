@@ -7,7 +7,7 @@
     <data>
         <variable
             name="homeViewModel"
-            type="com.dagachi.koapp_android.viewmodel.main.learner.home.LearnerHomeViewModel" />
+            type="com.dagachi.koapp_android.viewmodel.learner.home.LearnerHomeViewModel" />
     </data>
 
     <LinearLayout
