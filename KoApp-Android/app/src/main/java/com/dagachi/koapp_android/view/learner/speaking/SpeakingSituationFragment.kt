@@ -18,6 +18,9 @@ class SpeakingSituationFragment: BaseFragment<FragmentSpeakingSituationBinding>(
     private var situationList = ArrayList<SpeakingSituation>() // 대화 tip 리스트
     private var situationKorTitle: String? = null // 주제 상황 타이틀
 
+    override fun initCreateView() {
+    }
+
     override fun initViewCreated() {
         mainActivity!!.window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.Gray_100) // status bar 색상
 

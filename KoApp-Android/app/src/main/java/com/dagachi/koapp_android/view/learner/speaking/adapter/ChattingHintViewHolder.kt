@@ -5,8 +5,8 @@ import android.content.res.ColorStateList
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dagachi.koapp_android.R
-import com.dagachi.koapp_android.data.remote.model.ChatMessage
-import com.dagachi.koapp_android.data.remote.model.ChatRole
+import com.dagachi.koapp_android.data.remote.model.learner.speaking.ChatMessage
+import com.dagachi.koapp_android.data.remote.model.learner.speaking.ChatRole
 import com.dagachi.koapp_android.databinding.ItemChattingHintBinding
 import com.dagachi.koapp_android.view.learner.speaking.tts.DagachiTTS
 

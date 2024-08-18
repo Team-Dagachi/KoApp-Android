@@ -19,6 +19,9 @@ class SpeakingSubjectFragment: BaseFragment<FragmentSpeakingSubjectBinding>(Frag
     private val viewModel: SpeakingSubjectViewModel by viewModels() // 뷰모델
     private var subjectList = ArrayList<SpeakingSubject>() // 주제 리스트
 
+    override fun initCreateView() {
+    }
+
     @SuppressLint("Recycle")
     override fun initViewCreated() {
         mainActivity!!.window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.Gray_100) // status bar 색상

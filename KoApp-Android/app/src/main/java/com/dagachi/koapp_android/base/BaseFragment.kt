@@ -29,8 +29,11 @@ abstract class BaseFragment<VB: ViewDataBinding>(private val inflate: Inflate<VB
         savedInstanceState: Bundle?
     ): View? {
         mBinding = inflate.invoke(inflater, container, false)
+        initCreateView()
         return binding.root
     }
+
+    protected abstract fun initCreateView()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

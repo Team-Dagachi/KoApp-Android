@@ -115,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Korean_H3"
-                    android:text="@{homeViewModel.learnerHomeResponse.todayWord}"
+                    android:text="@{homeViewModel.learnerHomeData.todayWord}"
                     android:textColor="@color/Main_100"
                     tools:text="강아지"
                     android:layout_marginTop="6dp"/>
@@ -160,15 +160,15 @@
                     android:id="@+id/rv_learner_home_attendance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:nestedScrollingEnabled="false"
                     android:orientation="horizontal"
                     android:overScrollMode="never"
-                    android:nestedScrollingEnabled="false"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    tools:listitem="@layout/item_learner_attendance"
+                    app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                     tools:itemCount="7"
-                    app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"/>
+                    tools:listitem="@layout/item_learner_attendance" />
 
                 <TextView
                     android:layout_width="wrap_content"

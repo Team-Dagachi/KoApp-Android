@@ -8,7 +8,7 @@
     <data>
         <variable
             name="chatRoleModel"
-            type="com.dagachi.koapp_android.data.remote.model.ChatMessage" />
+            type="com.dagachi.koapp_android.data.remote.model.learner.speaking.ChatMessage" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -10,6 +10,9 @@ import com.dagachi.koapp_android.base.BaseFragment
 
 /* 학습자의 말하기 연습 화면 */
 class SpeakingFragment: BaseFragment<FragmentSpeakingBinding>(FragmentSpeakingBinding::inflate) {
+    override fun initCreateView() {
+    }
+
     override fun initViewCreated() {
         mainActivity!!.window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.Main_10) // status bar 색상
         WindowInsetsControllerCompat(mainActivity!!.window, mainActivity!!.window.decorView).isAppearanceLightStatusBars = true

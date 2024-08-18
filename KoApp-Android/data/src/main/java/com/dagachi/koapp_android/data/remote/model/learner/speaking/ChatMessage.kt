@@ -1,4 +1,4 @@
-package com.dagachi.koapp_android.data.remote.model
+package com.dagachi.koapp_android.data.remote.model.learner.speaking
 
 /* 챗봇 제작에 필요한 모델 */
 // 챗봇 역할

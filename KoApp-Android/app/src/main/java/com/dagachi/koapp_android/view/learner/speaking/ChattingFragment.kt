@@ -15,8 +15,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dagachi.koapp_android.R
-import com.dagachi.koapp_android.data.remote.model.ChatMessage
-import com.dagachi.koapp_android.data.remote.model.ChatRole
+import com.dagachi.koapp_android.data.remote.model.learner.speaking.ChatMessage
+import com.dagachi.koapp_android.data.remote.model.learner.speaking.ChatRole
 import com.dagachi.koapp_android.databinding.FragmentChattingBinding
 import com.dagachi.koapp_android.base.BaseFragment
 import com.dagachi.koapp_android.view.learner.speaking.adapter.ChattingAdapter
@@ -49,6 +49,9 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding>(FragmentChattingB
 
     private var isShowHint: Boolean = false // 힌트 버튼 클릭 여부
     private var hintMessageList = ArrayList<String>() // 힌트 메시지 리스트
+
+    override fun initCreateView() {
+    }
 
     override fun initViewCreated() {
         mainActivity!!.hideLearnerBottomNav(true)

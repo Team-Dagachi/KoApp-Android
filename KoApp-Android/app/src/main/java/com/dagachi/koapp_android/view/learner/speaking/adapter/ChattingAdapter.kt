@@ -1,14 +1,13 @@
 package com.dagachi.koapp_android.view.learner.speaking.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.dagachi.koapp_android.data.remote.model.ChatMessage
-import com.dagachi.koapp_android.data.remote.model.ChatRole
+import com.dagachi.koapp_android.data.remote.model.learner.speaking.ChatMessage
+import com.dagachi.koapp_android.data.remote.model.learner.speaking.ChatRole
 import com.dagachi.koapp_android.databinding.ItemChattingHintBinding
 import com.dagachi.koapp_android.databinding.ItemChattingModelBinding
 import com.dagachi.koapp_android.databinding.ItemChattingUserBinding

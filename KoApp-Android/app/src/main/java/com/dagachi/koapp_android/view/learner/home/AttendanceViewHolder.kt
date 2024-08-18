@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dagachi.koapp_android.R
 import com.dagachi.koapp_android.databinding.ItemLearnerAttendanceBinding
+import com.dagachi.koapp_android.domain.model.learner.home.AttendanceItem
 
 /* 홈 화면의 주간 이번주 출석률 RV 뷰 홀더 */
 class AttendanceViewHolder(val context: Context, val binding: ItemLearnerAttendanceBinding): RecyclerView.ViewHolder(binding.root) {

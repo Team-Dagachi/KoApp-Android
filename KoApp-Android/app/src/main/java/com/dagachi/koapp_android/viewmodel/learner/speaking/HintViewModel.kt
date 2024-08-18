@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.dagachi.koapp_android.BuildConfig
-import com.dagachi.koapp_android.data.remote.model.ChatRole
+import com.dagachi.koapp_android.data.remote.model.learner.speaking.ChatRole
 import com.dagachi.koapp_android.viewmodel.learner.speaking.data.HintItem
 import com.google.ai.client.generativeai.Chat
 import com.google.ai.client.generativeai.GenerativeModel

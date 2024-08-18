@@ -1,4 +1,4 @@
-package com.dagachi.koapp_android.widget.utils
+package com.dagachi.koapp_android.domain.utils
 
 import java.time.DayOfWeek
 import java.time.Instant
@@ -16,7 +16,9 @@ class DateUtils {
 
         // 오늘 날짜 기준, 일주일의 시작 날짜 구하기
         fun getWeekStartDate(): LocalDateTime {
-            val startDate: LocalDateTime = getTodayDate().toLocalDateTime().with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY))
+            val startDate: LocalDateTime = getTodayDate().toLocalDateTime().with(
+                TemporalAdjusters.previousOrSame(
+                    DayOfWeek.SUNDAY))
             return startDate
         }
     }

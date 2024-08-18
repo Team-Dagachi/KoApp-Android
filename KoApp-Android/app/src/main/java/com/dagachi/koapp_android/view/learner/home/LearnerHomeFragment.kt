@@ -1,23 +1,26 @@
 package com.dagachi.koapp_android.view.learner.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import com.dagachi.koapp_android.R
 import com.dagachi.koapp_android.databinding.FragmentLearnerHomeBinding
 import com.dagachi.koapp_android.base.BaseFragment
+import com.dagachi.koapp_android.domain.model.learner.home.AttendanceItem
+import com.dagachi.koapp_android.domain.model.learner.home.LearnerHome
+import com.dagachi.koapp_android.domain.utils.DateUtils
 import com.dagachi.koapp_android.viewmodel.learner.home.LearnerHomeViewModel
-import com.dagachi.koapp_android.widget.utils.DateUtils
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
-import java.time.LocalDateTime
-import java.time.ZonedDateTime
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.format.DateTimeFormatter
 
 /* 학습자의 홈 화면 */
+@AndroidEntryPoint
 class LearnerHomeFragment: BaseFragment<FragmentLearnerHomeBinding>(FragmentLearnerHomeBinding::inflate) {
     private lateinit var callback: OnBackPressedCallback // 뒤로가기 콜백
-    private val homeViewModel: LearnerHomeViewModel by viewModels()
+    private val homeViewModel: LearnerHomeViewModel by viewModels() // 뷰모델
 
     private var attendanceAdapter: AttendanceAdapter? = null
 
@@ -38,13 +41,24 @@ class LearnerHomeFragment: BaseFragment<FragmentLearnerHomeBinding>(FragmentLear
         callback.remove() // 콜백 제거
     }
 
+    override fun initCreateView() {
+        // 뷰모델 연결
+        binding.homeViewModel = homeViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+    }
+
     override fun initViewCreated() {
         // 바텀 네비게이션 띄우기
         mainActivity?.hideLearnerBottomNav(false)
 
-        // 이번주 출석률
-        attendanceAdapter = AttendanceAdapter(requireContext())
-        binding.rvLearnerHomeAttendance.adapter = attendanceAdapter
+        // RV 설정
+        setupRecyclerViews()
+
+        // 데이터 관찰 설정
+        //setupObservers()
+
+        // 데이터 로드
+        //homeViewModel.getLearnerHome()
 
         // 이번주 출석률 아이템 중앙 정렬
         FlexboxLayoutManager(requireContext()).apply {
@@ -56,46 +70,47 @@ class LearnerHomeFragment: BaseFragment<FragmentLearnerHomeBinding>(FragmentLear
     }
 
     override fun initAfterBinding() {
-        // 이번주 출석률 설정
-        setAttendanceDate()
-    }
-
-    // 날짜 설정 함수
-    private fun setAttendanceDate() {
-        // 날짜 포맷
-        val fullDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        val dateFormat = DateTimeFormatter.ofPattern("dd")
-
-        // 오늘 날짜
-        val today: ZonedDateTime = DateUtils.getTodayDate()
-        val todayToString = today.format(fullDateFormat)
-
-        // 일주일의 시작 날짜
-        val startDate: LocalDateTime = DateUtils.getWeekStartDate()
-
-        // 요일 배열
+        // API 연결전 사용할 더미 데이터
         val weekDayList: Array<String> = resources.getStringArray(R.array.week_array)
+        val weekStartDate = DateUtils.getWeekStartDate() // 일주일 시작 날짜
+        for (i in 0 until 7) {
+            val date = weekStartDate.plusDays(i.toLong()) // 날짜
 
-        for (i in 0..6) {
-            var isToday = false
-            val fullDate = startDate.plusDays(i.toLong()).format(fullDateFormat)
-            val date = startDate.plusDays(i.toLong()).format(dateFormat)
-
-            // 오늘 날짜라면 true
-            if (todayToString == fullDate) {
-                isToday = true
-            }
-
-            // 값 넣기
             attendanceAdapter?.addAttendanceItem(
                 AttendanceItem(
                     day = weekDayList[i],
-                    date = date,
-                    fullDate = fullDate,
+                    date = date.format(DateTimeFormatter.ofPattern("dd")),
                     isAttendance = false,
-                    isToday = isToday
+                    isToday = date.toLocalDate().isEqual(DateUtils.getTodayDate().toLocalDate()),
                 )
             )
         }
+    }
+
+    // RV 연결
+    private fun setupRecyclerViews() {
+        // 주간 출석률 어댑터
+        attendanceAdapter = AttendanceAdapter(requireContext())
+        binding.rvLearnerHomeAttendance.adapter = attendanceAdapter
+
+        //binding.rvLearnerHomeMission.adapter = missionAdapter
+        //binding.rvLearnerHomeProgram.adapter = programAdapter
+    }
+
+    // 데이터 받기
+    private fun setupObservers() {
+        homeViewModel.learnerHomeData.observe(viewLifecycleOwner) { learnerHome ->
+            updateUI(learnerHome)
+        }
+    }
+
+    // UI 업데이트
+    @SuppressLint("SetTextI18n")
+    private fun updateUI(learnerHome: LearnerHome) {
+        // 이름
+        binding.tvLearnerHomeName.text = "${learnerHome.userName}님,"
+
+        // RecyclerView 어댑터 설정
+        attendanceAdapter?.submitList(learnerHome.attendanceList)
     }
 }

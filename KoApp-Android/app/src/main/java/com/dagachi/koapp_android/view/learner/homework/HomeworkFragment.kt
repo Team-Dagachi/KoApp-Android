@@ -5,6 +5,9 @@ import com.dagachi.koapp_android.base.BaseFragment
 
 /* 학습자의 숙제 화면 */
 class HomeworkFragment: BaseFragment<FragmentHomeworkBinding>(FragmentHomeworkBinding::inflate) {
+    override fun initCreateView() {
+    }
+
     override fun initViewCreated() {
     }
 

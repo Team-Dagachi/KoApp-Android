@@ -2,15 +2,11 @@ package com.dagachi.koapp_android.view.learner.speaking.adapter
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.ColorMatrix
-import android.graphics.ColorMatrixColorFilter
-import android.graphics.PorterDuff
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dagachi.koapp_android.R
-import com.dagachi.koapp_android.data.remote.model.ChatMessage
-import com.dagachi.koapp_android.data.remote.model.ChatRole
+import com.dagachi.koapp_android.data.remote.model.learner.speaking.ChatMessage
+import com.dagachi.koapp_android.data.remote.model.learner.speaking.ChatRole
 import com.dagachi.koapp_android.databinding.ItemChattingUserBinding
 import com.dagachi.koapp_android.view.learner.speaking.tts.DagachiTTS
 

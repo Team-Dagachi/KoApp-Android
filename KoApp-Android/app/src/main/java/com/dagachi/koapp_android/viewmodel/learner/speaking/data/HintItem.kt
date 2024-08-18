@@ -1,6 +1,6 @@
 package com.dagachi.koapp_android.viewmodel.learner.speaking.data
 
-import com.dagachi.koapp_android.data.remote.model.ChatRole
+import com.dagachi.koapp_android.data.remote.model.learner.speaking.ChatRole
 
 /* 힌트 챗봇을 위한 모델 */
 data class HintItem(
