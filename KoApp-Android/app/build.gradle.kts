@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kapt)
     alias(libs.plugins.androidx.navigation.safeargs)
+    alias(libs.plugins.hilt)
 }
 
 val properties = Properties().apply {
@@ -81,4 +82,24 @@ dependencies {
 
     // flexbox layout
     implementation(libs.flexbox)
+
+    // GSON
+    implementation(libs.gson)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.converter.scalars)
+
+    // OkHttp
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
 }

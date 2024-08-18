@@ -12,7 +12,7 @@ import com.dagachi.koapp_android.data.remote.model.ChatRole
 import com.dagachi.koapp_android.databinding.ItemChattingHintBinding
 import com.dagachi.koapp_android.databinding.ItemChattingModelBinding
 import com.dagachi.koapp_android.databinding.ItemChattingUserBinding
-import com.dagachi.koapp_android.widget.ApplicationClass.Companion.applicationContext
+import com.dagachi.koapp_android.di.ApplicationClass.Companion.applicationContext
 
 /* Gemini 챗봇 RV 어댑터 */
 class ChattingAdapter : RecyclerView.Adapter<ViewHolder>() {

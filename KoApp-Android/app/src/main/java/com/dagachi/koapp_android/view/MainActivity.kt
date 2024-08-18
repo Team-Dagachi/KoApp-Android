@@ -11,7 +11,9 @@ import androidx.navigation.ui.NavigationUI
 import com.dagachi.koapp_android.R
 import com.dagachi.koapp_android.databinding.ActivityMainBinding
 import com.dagachi.koapp_android.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private var backPressedTime: Long = 0
 

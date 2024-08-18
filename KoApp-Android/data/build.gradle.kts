@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -44,6 +45,14 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // GSON
+    implementation(libs.gson)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
@@ -52,4 +61,7 @@ dependencies {
     // OkHttp
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
 }

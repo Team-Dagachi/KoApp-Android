@@ -15,7 +15,7 @@
     </queries>
 
     <application
-        android:name=".widget.ApplicationClass"
+        android:name=".di.ApplicationClass"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

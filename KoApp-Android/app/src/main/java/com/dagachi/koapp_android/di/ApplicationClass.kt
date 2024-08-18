@@ -1,9 +1,11 @@
-package com.dagachi.koapp_android.widget
+package com.dagachi.koapp_android.di
 
 import android.app.Application
 import android.content.Context
+import dagger.hilt.android.HiltAndroidApp
 
 /* 공통적으로 사용하는 데이터를 관리하는 파일 */
+@HiltAndroidApp
 class ApplicationClass: Application() {
     init {
         instance = this
