@@ -6,14 +6,18 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 
 class SplashActivity : AppCompatActivity() {
-    val SPLASH_VIEW_TIME: Long = 2000 //2초간 스플래시 화면을 보여줌 (ms)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash)
 
-        Handler().postDelayed({ //delay를 위한 handler
-            startActivity(Intent(this, MainActivity::class.java))
+        // 타이머가 끝나면 내부 실행
+        Handler().postDelayed(Runnable {
+            // 앱의 MainActivity로 넘어가기
+            val i = Intent(this@SplashActivity,MainActivity::class.java)
+            startActivity(i)
+            // 현재 액티비티 닫기
             finish()
-        }, SPLASH_VIEW_TIME)
-    }mn
+        }, 3000) // 3초
+    }
 }
