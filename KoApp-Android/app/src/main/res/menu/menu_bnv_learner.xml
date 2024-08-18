@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 학습자 화면의 네비게이션 메뉴 설정 -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/learnerHomeFragment"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_menu_home_24"
+        android:title="@string/bnv_menu_learner_1"/>
+    <item
+        android:id="@+id/homeworkFragment"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_menu_homework_24"
+        android:title="@string/bnv_menu_learner_2"/>
+    <item
+        android:id="@+id/speakingFragment"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_menu_speaking_24"
+        android:title="@string/bnv_menu_learner_3"/>
+    <item
+        android:id="@+id/expressionFragment"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_menu_expression_24"
+        android:title="@string/bnv_menu_learner_4"/>
+    <item
+        android:id="@+id/noteFragment"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_menu_note_24"
+        android:title="@string/bnv_menu_learner_5"/>
+</menu>

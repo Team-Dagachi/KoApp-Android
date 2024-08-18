@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 말하기 연습 화면에서 사용되는 진행률 세로 막대 그래프 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 그래프 바탕 색상 -->
+    <item android:id="@android:id/background">
+        <shape>
+            <solid android:color="@color/Gray_200"/>
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+
+    <!-- 그래프 진행률 색상 -->
+    <item android:id="@+id/progress">
+        <scale android:scaleWidth="100%">
+            <shape>
+                <solid android:color="@color/Main_100"/>
+                <corners android:radius="8dp"/>
+            </shape>
+        </scale>
+    </item>
+</layer-list>

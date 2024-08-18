@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 한국어 폰트 스타일 -->
+    <style name="Korean_H0">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:lineHeight">40dp</item>
+    </style>
+    <style name="Korean_H1">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:lineHeight">40dp</item>
+    </style>
+    <style name="Korean_H2">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+    </style>
+    <style name="Korean_H3">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+    </style>
+    <style name="Korean_H4">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_semibold</item>
+    </style>
+    <style name="Korean_SubTitle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+    </style>
+    <style name="Korean_Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+    </style>
+    <style name="Korean_Body2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+    </style>
+    <style name="Korean_Popup1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+    </style>
+    <style name="Korean_Popup2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+    </style>
+    <style name="Korean_Button1">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+    </style>
+    <style name="Korean_Button2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+    </style>
+    <style name="Korean_Button3">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+    </style>
+    <style name="Korean_Caption">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+    </style>
+
+    <!-- 외국어 폰트 스타일 -->
+    <style name="English_H0">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:lineHeight">40dp</item>
+    </style>
+    <style name="English_H1">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:lineHeight">40dp</item>
+    </style>
+    <style name="English_H2">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+    <style name="English_H3">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+    <style name="English_H4">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontWeight">700</item>
+    </style>
+    <style name="English_SubTitle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+    <style name="English_Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+    <style name="English_Body2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+    <style name="English_Popup1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+    <style name="English_Popup2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+    <style name="English_Button1">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+    <style name="English_Button2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+    </style>
+    <style name="English_Button3">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+    <style name="English_Caption">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+</resources>

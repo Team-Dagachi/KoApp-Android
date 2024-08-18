@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/learnerHomeFragment">
+
+    <!-- 학습자 홈 화면 -->
+    <fragment
+        android:id="@+id/learnerHomeFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.home.LearnerHomeFragment"
+        android:label="frm_learner_home"
+        tools:layout="@layout/fragment_learner_home">
+    </fragment>
+
+    <!-- 숙제 화면 -->
+    <fragment
+        android:id="@+id/homeworkFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.homework.HomeworkFragment"
+        android:label="frm_homework"
+        tools:layout="@layout/fragment_homework"/>
+
+    <!-- 말하기 연습 화면 -->
+    <fragment
+        android:id="@+id/speakingFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.speaking.SpeakingFragment"
+        android:label="frm_speaking"
+        tools:layout="@layout/fragment_speaking">
+        <action
+            android:id="@+id/action_speakingFrm_to_subjectFrm"
+            app:destination="@id/speakingSubjectFragment"/>
+    </fragment>
+
+    <!-- 말하기 연습의 주제별 화면 -->
+    <fragment
+        android:id="@+id/speakingSubjectFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.speaking.SpeakingSubjectFragment"
+        android:label="frm_speaking_subject"
+        tools:layout="@layout/fragment_speaking_subject">
+        <!-- 말하기 연습 주제 -->
+        <argument
+            android:name="subjectTitle"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_subjectFrm_to_situationFrm"
+            app:destination="@id/speakingSituationFragment"/>
+    </fragment>
+
+    <!-- 말하기 연습의 상황별 화면 -->
+    <fragment
+        android:id="@+id/speakingSituationFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.speaking.SpeakingSituationFragment"
+        android:label="frm_speaking_situation"
+        tools:layout="@layout/fragment_speaking_situation">
+        <!-- 말하기 연습 상황 -->
+        <argument
+            android:name="situationTitle"
+            app:argType="string" />
+
+        <!-- 말하기 연습 상황(한국어) -->
+        <argument
+            android:name="situationKorTitle"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_situationFrm_to_chattingFrm"
+            app:destination="@id/chattingFragment"/>
+    </fragment>
+
+    <!-- 스피킹 화면 -->
+    <fragment
+        android:id="@+id/chattingFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.speaking.ChattingFragment"
+        android:label="frm_chatting"
+        tools:layout="@layout/fragment_chatting">
+
+        <!-- 말하기 연습 상황(한국어) -->
+        <argument
+            android:name="situationKorTitle"
+            app:argType="string" />
+    </fragment>
+
+    <!-- 생활표현 화면 -->
+    <fragment
+        android:id="@+id/expressionFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.expression.ExpressionFragment"
+        android:label="frm_expression"
+        tools:layout="@layout/fragment_expression"/>
+
+    <!-- 노트 화면 -->
+    <fragment
+        android:id="@+id/noteFragment"
+        android:name="com.dagachi.koapp_android.view.main.learner.note.NoteFragment"
+        android:label="fram_note"
+        tools:layout="@layout/fragment_note"/>
+</navigation>
