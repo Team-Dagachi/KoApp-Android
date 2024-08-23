@@ -13,7 +13,7 @@
         android:id="@+id/main_CLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.main.MainActivity">
+        tools:context=".view.MainActivity">
 
         <!-- 각 화면에서 보여질 화면 -->
         <androidx.fragment.app.FragmentContainerView

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 학습자 화면의 참여 중인 프로그램 -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/all_radius_16_box"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/tv_item_learner_program"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Korean_H4"
+            android:textColor="@color/Gray_700"
+            android:padding="24dp"
+            tools:text="프로그램 이름"/>
+    </LinearLayout>
+</layout>

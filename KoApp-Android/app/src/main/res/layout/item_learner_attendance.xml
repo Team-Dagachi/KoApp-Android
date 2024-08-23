@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 사용자의 홈 화면에서 사용하는 이번주 출석률 아이템 레이아웃 -->
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/lLayout_item_learner_attendance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/all_radius_full_box"
+        android:backgroundTint="@color/White"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="8dp">
+
+        <!-- 요일 -->
+        <TextView
+            android:id="@+id/tv_item_learner_attendance_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Korean_Body1"
+            android:textColor="@color/Gray_600"
+            tools:text="월"/>
+
+        <!-- 출석 여부 -->
+        <ImageView
+            android:id="@+id/iv_item_learner_attendance_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_check_fill_32"
+            android:layout_marginTop="6dp"
+            android:visibility="gone"/>
+
+        <!-- 요일 -->
+        <TextView
+            android:id="@+id/tv_item_learner_attendance_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="18sp"
+            android:textColor="@color/Gray_600"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="4dp"
+            tools:text="24"/>
+    </LinearLayout>
+</layout>

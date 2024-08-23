@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kapt)
     alias(libs.plugins.androidx.navigation.safeargs)
+    alias(libs.plugins.hilt)
 }
 
 val properties = Properties().apply {
@@ -25,6 +26,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "GEMINI_API_KEY", properties.getProperty("gemini_api_key"))
+        buildConfigField("String", "BASE_URL", properties.getProperty("base_url"))
     }
 
     buildTypes {
@@ -51,6 +53,9 @@ android {
 
 dependencies {
 
+    implementation(project(":data"))
+    implementation(project(":domain"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -75,4 +80,27 @@ dependencies {
 
     // lottie animation
     implementation(libs.lottie)
+
+    // flexbox layout
+    implementation(libs.flexbox)
+
+    // GSON
+    implementation(libs.gson)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.converter.scalars)
+
+    // OkHttp
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
 }
